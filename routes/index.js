@@ -30,20 +30,6 @@ router.get('/', csrfProtection, async(req, res) => {
     });
 });
 
-/* GET install page. */
-router.get('/install', csrfProtection, async(req, res) => {
-    res.render("layouts/install", {
-        csrfToken: req.csrfToken(),
-        data: {
-            username: process.env.PGUSER,
-            host: process.env.PGHOST,
-            database: process.env.PGDATABASE,
-            password: process.env.PGPASSWORD
-        },
-        renderBody: "index/index.ejs",
-    });
-});
-
 /*
 for API
  */
@@ -66,6 +52,9 @@ router.get('/login', csrfProtection, async(req, res) => {
         return res.redirect(CONFIG.app.afterLogin)
     }
     var isError = req.query.err == 1 ? true : false;
+    if(isError) {
+        res.locals.error = null;
+    }
     res.locals.menuApp = "login"
     res.render("layouts/blank", {
         isError: isError,
@@ -74,17 +63,13 @@ router.get('/login', csrfProtection, async(req, res) => {
         renderBody: "index/login.ejs"
     });
 });
-//default login username : admin@admin.com password : 123456
+
 router.post('/login', csrfProtection, async(req, res) => {
-    var query = req.body;
-    var username = query.username;
-    var password = query.password;
-    await zRoute.login(username, password, req, res, false, "/zdashboard");
+    await zRoute.login(req.body.username, req.body.password, req, res);
 });
 
-router.get('/auto-login', async(req, res) => {
-    var url = req.query.url || "";
-    await zRoute.login("admin@admin.com", "123456", req, res, false, url);
+router.post('/login-ajax', csrfProtection, async(req, res) => {
+    res.json(await zRoute.loginAjax(req.body.username, req.body.password, req, res));
 });
 
 router.get('/profile',csrfProtection, access, async(req, res) => {

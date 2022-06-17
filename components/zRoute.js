@@ -669,25 +669,50 @@ zRoute.loginNormal = async(username, password) => {
     return [];
 }
 
-
-zRoute.login = async(username, password, req, res, isSocialLogin, url = "") => {
+zRoute.loginAjax = async(username, password, req, res, isSocialLogin, url = "") => {
+    var data = {}
+    var redirect = '';
     try {
         isSocialLogin = isSocialLogin || false;
         var rows = isSocialLogin ? await zRoute.loginAuth(username, password) : await zRoute.loginNormal(username, password);
         if (rows.length > 0) {
             await zRoute.handleSession(req, rows[0]);
-            var redirect = url == "" ? `${CONFIG.app.url}${CONFIG.app.afterLogin}` : "/" + url;
-            console.log(redirect)
-            res.redirect(redirect);
+            redirect = url == "" ? `${CONFIG.app.url}${CONFIG.app.afterLogin}` : "/" + url;
+            data = {
+                status : 1,
+                url : redirect
+            }
+            /*console.log(redirect)
+             res.redirect(redirect);*/
         } else {
-            console.log("ada error")
-            req.session.sessionFlashc = 1;
-            res.locals.sessionFlash = 1;
-            res.redirect(url == "" ? '/login?err=1' : "/" + url);
+            data = {
+                status : 0,
+                url : redirect
+            }
         }
     } catch (err) {
         debug(req, res, err);
         res.json("Error : " + err.toString());
+        data = {
+            status : 0,
+            url : redirect
+        }
+    }
+
+    return data;
+}
+
+zRoute.login = async(username, password, req, res, isSocialLogin, url = "") => {
+    var data = await zRoute.loginAjax(username, password, req, res, isSocialLogin, url = "");
+    var redirect = data.url;
+
+    console.log(data)
+    if(data.status == 1) {
+        res.redirect(redirect);
+    } else {
+        req.session.sessionFlashc = 1;
+        res.locals.sessionFlash = 1;
+        res.redirect(url == "" ? '/login?err=1' : "/" + url);
     }
 }
 
