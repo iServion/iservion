@@ -1,0 +1,67 @@
+<%- UI.Form.breadcrumb(frameworkcss, [{text: LANGUAGE['home'], href:"/dashboard"}, {text: LANGUAGE['grid_list'], href:"/"+routeName}, {text: LANGUAGE['update'], href : '/' + routeName+'/update/'+data.id}, {text: LANGUAGE['create'], href : '/'+routeName+'/create'}, {text: LANGUAGE['view'], active : true}]) %>
+
+<div class="page-header">
+    <h2>View <%- menuApp %> <%= data.id %></h2>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-6">
+        <div class="btn-group <%- UI.Form.pullRight(frameworkcss)%>" role="group" aria-label="button">
+            <% if(levels.update){ %>
+            <a class="btn btn-info" href="/<%- routeName%>/update/<%= data.id  %>"
+               title="Update data"><i class="fa fa-pencil"></i> <%- LANGUAGE['update']%>
+            </a> &nbsp;
+            <% } %>
+            <% if(levels.delete){ %>
+            <button class="btn btn-danger" id="<%- routeName %>-delete" data-id="<%= data.id %>"
+                    title="Delete Data"><i class="fa fa-trash"></i> <%- LANGUAGE['delete'] %>
+            </button> &nbsp;
+
+            <% } %>
+            <% if(levels.create){ %>
+            <a class="btn btn-success" href="/<%- routeName%>/create" title="Create data"><i class="fa fa-plus"></i>
+                <%- LANGUAGE['create']%>
+            </a>
+            <% } %>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("<%- routeName %>-delete").addEventListener("click", deleteData);
+    function deleteData() {
+        if (window.confirm("<%- LANGUAGE['delete_confirm'] %>")) {
+            var http = new XMLHttpRequest();
+            var url = '/<%- routeName %>/delete';
+            var params = 'id=<%- data.id%>';
+            http.open('DELETE', url, true);
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            http.onreadystatechange = function () {//Call a function when the state changes.
+                if (http.readyState == 4 && http.status == 200) {
+                    location.href = "/<%- routeName%>"
+                }
+            }
+            http.send(params);
+        }
+    }
+</script>
+<p>&nbsp;</p>
+<div class="boxy">
+<table class="table table-striped"><tbody>
+			<tr>
+				<th class="can-copy"   data-name="{client_pc_id}"><%- attributeData.labels.client_pc_id %></th>
+				<td  class="can-copy"  colspan="3" ><%- data.client_pc_id %></td>
+			</tr>
+			<tr>
+				<th class="can-copy"   data-name="{name}"><%- attributeData.labels.name %></th>
+				<td  class="can-copy"  colspan="3" ><%- data.name %></td>
+			</tr>
+			<tr>
+				<th class="can-copy"   data-name="{version}"><%- attributeData.labels.version %></th>
+				<td  class="can-copy"  colspan="3" ><%- data.version %></td>
+			</tr>
+</tbody></table>
+</div>

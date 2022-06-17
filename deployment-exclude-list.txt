@@ -1,0 +1,11 @@
+/.*
+sql/
+node_modules/
+bitbucket-pipelines.yml
+deployment-exclude-list.txt
+public/images/
+public/documents/
+public/messages/
+public/uploads/
+public/excel/tmp/
+public/.well-known

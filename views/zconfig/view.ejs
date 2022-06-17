@@ -1,0 +1,89 @@
+<nav class="breadcrumb pull-right boxy-small">
+    <a class="breadcrumb-item" href="dashboard"> <%- LANGUAGE['home']%> </a> /
+    <a class="breadcrumb-item" href="/<%- routeName%>"> <%- LANGUAGE['grid_list']%></a> /
+    <% if(levels.create){ %>
+    <a class="breadcrumb-item" href="/<%- routeName%>/create"> <%- LANGUAGE['create']%> </a> /
+    <% }%>
+    <% if(levels.update){ %>
+    <a class="breadcrumb-item" href="/<%- routeName%>/update/<%= data.id %>"> <%- LANGUAGE['update']%> </a> /
+    <% } %>
+    <span class="breadcrumb-item active"><%- LANGUAGE['view']%></span>
+</nav>
+
+<div class="page-header">
+    <h2><%- titleApp %></h2>
+    <small><%- companyName %></small>
+</div>
+
+<table class="table table-striped table-responsive">
+    <tr>
+        <td colspan="2"><center><h3><%- menuApp %> <%= data.id %></h3></center></td>
+        <td colspan="2" style="text-align: right">
+            <% if(levels.update){ %>
+            <a class="btn btn-info" href="/<%- routeName%>/update/<%= data.id  %>"
+               title="Update data"><i class="fa fa-pencil"></i> <%- LANGUAGE['update']%>
+            </a> &nbsp;
+            <% } %>
+            <% if(levels.delete){ %>
+            <button class="btn btn-danger" id="<%- routeName %>-delete" data-id="<%= data.id %>"
+                    title="Delete Data"><i class="fa fa-trash"></i> <%- LANGUAGE['delete'] %>
+            </button>
+            <script>
+                document.getElementById("<%- routeName %>-delete").addEventListener("click", deleteData);
+                function deleteData() {
+                    if (window.confirm("<%- LANGUAGE['delete_confirm'] %>")) {
+                        var http = new XMLHttpRequest();
+                        var url = '/<%- routeName %>/delete';
+                        var params = 'id=<%- data.id%>';
+                        http.open('DELETE', url, true);
+                        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                        http.onreadystatechange = function () {//Call a function when the state changes.
+                            if (http.readyState == 4 && http.status == 200) {
+                                location.href = "/<%- routeName%>"
+                            }
+                        }
+                        http.send(params);
+                    }
+                }
+            </script>
+            &nbsp;
+            <% } %>
+            <% if(levels.create){ %>
+            <a class="btn btn-success " href="/<%- routeName%>/create" title="Create data"><i class="fa fa-plus"></i>
+                <%- LANGUAGE['create']%>
+            </a>
+            <% } %>
+        </td>
+    </tr>
+</table>
+
+	<table class="table table-striped">
+		<tbody>	
+			<tr>
+				<th><%- attributeData.labels["id"] %></th>
+				<td><%- data.id %></td>
+					<th><%- attributeData.labels["layout"] %></th>
+				<td><%- data.layout %></td>
+			</tr>
+	
+			<tr>
+				<th><%- attributeData.labels["json"] %></th>
+				<td><%- data.json %></td>
+					<th><%- attributeData.labels["frameworkcss"] %></th>
+				<td><%- data.frameworkcss %></td>
+			</tr>
+	
+			<tr>
+				<th><%- attributeData.labels["companyId"] %></th>
+				<td><%- data.companyId %></td>
+					<th><%- attributeData.labels["createdBy"] %></th>
+				<td><%- data.createdBy %></td>
+			</tr>
+	
+			<tr>
+				<th><%- attributeData.labels["createdAt"] %></th>
+				<td><%- data.createdAt ? data.createdAt == "0000-00-00 00:00:00" ? "" :   moment(data.createdAt).format("YYYY MMMM DD, HH:mm") : "" %></td>
+				<th></th><td></td>
+			</tr>
+		</tbody>
+	</table>

@@ -1,0 +1,67 @@
+<!--<script src="/bs-iconpicker/js/iconset/iconset-fontawesome-4.2.0.min.js"></script>
+<script src="/bs-iconpicker/js/bootstrap-iconpicker.js"></script>-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/js/bootstrap-iconpicker.bundle.min.js"></script>
+<script src="/js/jquery-menu-editor.js" ></script>
+
+<script>
+
+    $(function () {
+        //icon picker options
+        var iconPickerOptions = {searchText: 'Home...', labelHeader: '{0} de {1} Pags.'};
+        //sortable list options
+        var sortableListOptions = {
+            placeholderCss: {'background-color': 'cyan'}
+        };
+
+        var editor = new MenuEditor('myEditor', {listOptions: sortableListOptions, iconPicker: iconPickerOptions, labelEdit: 'Edit'});
+        editor.setForm($('#frmEdit'));
+        editor.setUpdateButton($('#btnUpdate'));
+        <%if(isMenu) {%>
+        editor.setData(<%- JSON.stringify(arr)%>);
+        <%}  %>
+
+        $('#btnOut').on('click', function () {
+            var str = editor.getString();
+            $("#out").text(str);
+        });
+
+        $("#btnUpdate").click(function(){
+            editor.update();
+            $("#out").text(editor.getString());
+        });
+
+        $('#btnAdd').click(function(){
+            editor.add();
+            $("#out").text(editor.getString());
+        });
+
+        var str = editor.getString();
+        $("#out").text(str);
+
+        $("#btnOut").on("click", function () {
+            ajaxPost("/zmenu",{
+                name : $("#name").val(),
+                json:$("#out").val()
+            },function (data) {
+                if(data.status == 0){
+                    toastr.error(data.message)
+                } else {
+                    toastr.success(data.message, data.title);
+                    setTimeout(function () {
+                        location.href = "";
+                    }, 1000)
+                }
+            });
+        });
+    });
+
+    <% if(refresh == 1) {%>
+    setTimeout(function () {
+        location.href = "";
+    }, 1000);
+    <%}%>
+
+
+</script>
+

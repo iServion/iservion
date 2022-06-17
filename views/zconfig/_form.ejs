@@ -1,0 +1,96 @@
+<form id="form-group" method="post" action="/<%- routeName%>/update" class="boxy" enctype="multipart/form-data"   >
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <div class="page-header">
+        <h3>Welcome to the Configuration Your App</h3>
+    </div>
+
+
+
+	<%- UI.Form.tab(frameworkcss,tabs).html%>
+	<div class="tab-content">
+		<%
+			var index = 0;
+			var i = 1;
+			for(var key in json) {
+			var active = index == 0 ? " active " : "";
+		%>
+		<div role="tabpanel" class="tab-pane  <%-active%>" id="arr<%- index%>">
+			<div class="container-fluid boxy mtop20">
+				<div class="row">
+					<div class="col-md-6">
+
+						<% for(var k in json[key]) {%>
+
+						<% if(key == "layouts") { %>
+							<% if(k == "frameworkcss") {%>
+								<input autocomplete="off"  autofocus   tabindex="<%- i%>"  type="hidden"   class="form-control " id="<%- key%>_<%- k %>" name="json[<%- key%>][<%- k%>]" placeholder="<%- k %>"  required value="<%- json[key][k] %>">
+							<%} else {%>
+								<div class="form-group div<%-key%><%-k%>">
+									<label for="<%-key%><%-k%>"><%- k %> *</label>
+									<select tabindex="<%- i%>"  class="form-control " id="<%- key%>_<%- k %>" name="json[<%- key%>][<%- k%>]">
+										<% layouts.forEach(function (item) {
+										var selected = json[key][k] == item.id ? " selected " : "";
+										%>
+											<option value="<%- item.id%>"  <%- selected%>><%- item.name%></option>
+										<%})%>
+									</select>
+								</div>
+							<%}%>
+						<% } else  {%>
+						<div class="form-group div<%-key%><%-k%>">
+							<label for="<%-key%><%-k%>"><%- k %> *</label>
+							<input autocomplete="off"  autofocus   tabindex="<%- i%>"  type="text"   class="form-control " id="<%- key%>_<%- k %>" name="json[<%- key%>][<%- k%>]" placeholder="<%- k %>"  required value="<%- json[key][k] %>">
+						</div>
+						<%}%>
+						<% i++; } %>
+
+
+					</div>
+
+					<div class="col-md-6"></div>
+
+				</div>
+			</div>
+		</div>
+		<% index++;i++; } %>
+	</div>
+
+
+
+
+					<!--	<div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group divlayout">
+                                    <label for="layout"><%- attributeData.labels["layout"] %> <%- attributeData.fields.layout.required ? "*" : "" %></label>
+                                    <input autocomplete="off"  autofocus   tabindex="1"  type="text"   class="form-control " id="layout" name="<%- routeName %>[layout]" placeholder="<%- attributeData.fields.layout.placeholder %>" <%- attributeData.fields.layout.required ? "required" : "" %>  value="<%- data.layout %>">
+                                </div>
+                                <div class="form-group divframeworkcss">
+                                    <label for="frameworkcss"><%- attributeData.labels["frameworkcss"] %> <%- attributeData.fields.frameworkcss.required ? "*" : "" %></label>
+                                    <input autocomplete="off"   tabindex="2"  type="text"   class="form-control " id="frameworkcss" name="<%- routeName %>[frameworkcss]" placeholder="<%- attributeData.fields.frameworkcss.placeholder %>" <%- attributeData.fields.frameworkcss.required ? "required" : "" %>  value="<%- data.frameworkcss %>">
+                                </div>
+                                <div class="form-group divjson">
+                                    <label for="json"><%- attributeData.labels["json"] %> <%- attributeData.fields.json.required ? "*" : "" %></label>
+                                    <input autocomplete="off"   tabindex="3"  type="text"   class="form-control " id="json" name="<%- routeName %>[json]" placeholder="<%- attributeData.fields.json.placeholder %>" <%- attributeData.fields.json.required ? "required" : "" %>  value="<%- data.json %>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>-->
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <button id="form-submit" type="submit" class="btn btn-block btn-lg btn-success"><span
+                        class="fa fa-paper-plane"></span> <%- LANGUAGE['submit'] %>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <p class="text-muted"><strong>*</strong> <%- LANGUAGE['required_not_empty'] %></p>
+        </div>
+    </div>
+</form>

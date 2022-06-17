@@ -1,0 +1,39 @@
+<form id="form-group" method="post" action="" class="boxy" enctype="multipart/form-data" [[[NO_VALI_DATE_NOVALIDATE]]]  >
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="page-header">
+
+    </div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<%- UI.Form.group("server_id", zForms.label["server_id"], zForms.fn("server_id",{tabindex:1})); %>
+			<%- UI.Form.group("title", zForms.label["title"], zForms.fn("title",{tabindex:2})); %>
+			<%- UI.Form.group("description", zForms.label["description"], zForms.fn("description",{tabindex:3})); %>
+		</div>
+		<div class="col-md-6">
+			<%- UI.Form.group("status", zForms.label["status"], zForms.fn("status",{tabindex:4})); %>
+			<%- UI.Form.group("display", zForms.label["display"], zForms.fn("display",{tabindex:5})); %>
+			<%- UI.Form.group("kept_alive", zForms.label["kept_alive"], zForms.fn("kept_alive",{tabindex:6})); %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		</div>
+	</div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <%- UI.Form.submit() %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <p class="text-muted"><strong>*</strong> <%- LANGUAGE['required_not_empty'] %></p>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,220 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 98%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.col {
+    width: 100%;
+    padding: 5%;
+    background-color: red;
+    margin-bottom: 5%;
+    border-top: 5px solid red;
+}
+
+
+/* the blue circle with only one line of text, centered vertically */
+.oneline:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background: cadetblue;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.oneline:hover:after {
+    background-color: goldenrod;
+}
+
+.oneline div {
+    float: left;
+    width: 100%;
+    padding-top: 50%;
+    line-height: 1em;
+    margin-top: -1.7em;
+    text-align: center;
+    color: white;
+}
+
+.oneline p {
+    text-align: center;
+    font-size: 1.2em;
+}
+/*
+*/
+
+.mainline:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+
+.mainline div {
+    float: left;
+    width: 100%;
+    padding-top: 50%;
+    line-height: 1em;
+    margin-top: -1.7em;
+    text-align: center;
+    color: white;
+}
+
+.mainline p {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.blueline:after {
+    background: cadetblue;
+}
+.blueline:hover:after {
+    background-color: #006699;
+}
+
+.greenline:after {
+    background: #3e8f3e;
+}
+
+.greenline:hover:after {
+    background: goldenrod;
+}
+
+.yellowline:after {
+    background: goldenrod;
+}
+
+.yellowline:hover:after {
+    background: #3e8f3e;
+}
+
+.redline:after {
+    background: #9d261d;
+}
+
+.redline:hover:after {
+    background: cadetblue;
+}
+
+
+
+@media only screen and (min-width: 350px) {
+    .col {
+        display: inline-block;
+        position: relative;
+        width: 60%;
+        margin: 4% 0 5% 3%;
+        padding: 0;
+        background-color: transparent;
+        border-top: none;
+    }
+    .col .spacer {
+        position: relative;
+        padding-top: 100%;
+    }
+    .col:nth-child(3n+1) {
+        margin-left: 1%;
+    }
+    .circle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: powderblue;
+        color: #333;
+        border-radius: 50%;
+        box-sizing: border-box;
+        text-align: center;
+        display: block;
+        padding: 5px;
+        border: 5px solid #9dd8e0;
+        -webkit-transition: all 1s ease-out;
+        -moz-transition: all 1s ease-out;
+        -o-transition: all 1s ease-out;
+        transition: all 1s ease-out;
+    }
+    .circle_red {
+         background-color: red;
+    }
+    .circle:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -2%;
+    }
+    .circle:hover {
+        background-color: maroon;
+        border: 5px solid #4d0000;
+        color: #fff;
+    }
+    .outline {
+        border: 5px solid grey;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 50%;
+        box-sizing: border-box;
+    }
+    .circle h1 {
+        font-size: 0.9em;
+        line-height: 1em;
+    }
+    .circle p {
+        font-size: 0.8em;
+        line-height: 1em;
+        color: white;
+        text-align: center;
+    }
+    .circle a {
+        color: inherit;
+    }
+    .circle > p, .circle > h1, .circle > .wrapcontent {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .circle > p > p, .circle > p > h1, .circle > h1 > p, .circle > h1 > h1, .circle > .wrapcontent > p, .circle > .wrapcontent > h1 {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 481px) {
+    .circle h1 {
+        font-size: 1.2em;
+        line-height: 1em;
+    }
+    .circle p {
+        font-size: 1em;
+        line-height: 1em;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .circle h1 {
+        font-size: 1.6em;
+        line-height: 1em;
+    }
+    .circle p {
+        font-size: 1.2em;
+        line-height: 1em;
+    }
+}

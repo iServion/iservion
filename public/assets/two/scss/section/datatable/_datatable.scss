@@ -1,0 +1,143 @@
+.dataTables_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    .has-submenu {
+        &::after {
+            display: none;
+        }
+    }
+
+    .dt-button-collection {
+        width: 134.5px;
+        margin-top: 5px;
+        overflow: hidden;
+        box-shadow: 0 0 0 transparent;
+        border: 1px solid $primary-color;
+        padding: 0;
+
+        span {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .pagination {
+        li {
+            margin: 0 5px;
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 50% !important;
+                font-size: 13px;
+                color: rgba(0, 0, 0, 0.6);
+                font-weight: 600;
+            }
+
+            &.active {
+                a {
+                    background-color: #C5D2FF;
+                    color: #000000;
+                    border: transparent;
+                }
+            }
+        }
+    }
+    
+    .btn-group-vertical>.btn, .btn-group>.btn {
+        flex: initial;
+        background-color: #D1D6EC;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px !important;
+        border: 0;
+        padding: 8px 12px;
+
+        &:focus {
+            outline: 0;
+            box-shadow: 0 0 0 transparent;
+        }
+
+        &.copy {
+            background-color: #C9F3DD;
+        }
+
+        &.excel {
+            background-color: rgb(183, 220, 255);
+        }
+
+        &.pdf {
+            background-color: rgb(243, 244, 179);
+        }
+
+        &.refresh {
+            background-color: rgb(204, 212, 255);
+        }
+        
+        span {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding-right: 0;
+            
+            span {
+                display: block;
+                padding-left: 8px;
+                color: #000000;
+                white-space: nowrap;
+                font-size: 16px;
+                font-weight: 500;
+
+            }
+        }
+    }
+}
+
+.dt-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    h1 {
+        margin-right: auto;
+    }
+
+    @media (max-width: 767.98px) {
+        justify-content: center;
+
+        h1 {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+
+}
+
+.dataTables_length {
+    width: 50%;
+    margin-bottom: 10px;
+
+    @media (max-width: 767.98px) {
+        width: 100%;
+    }
+}
+
+.dataTables_filter {
+    width: 50%;
+    text-align: 1ight;
+
+    @media (max-width: 767.98px) {
+        width: 100%;
+    }
+}
+
+.dataTables_info {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    margin-right: auto;
+}

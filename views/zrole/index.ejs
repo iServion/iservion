@@ -1,0 +1,84 @@
+<div class="">
+
+
+
+    <div class="page-header">
+        <h1><%- titleApp %></h1>
+    </div>
+
+    <div class="card">
+
+    </div>
+
+    <div class="card panel panel-info boxy">
+        <div class="panel-heading">
+            <div class="pull-right">
+                <div class="summary"></div>
+            </div>
+            <h3 class="panel-title"><i class="fa fa-cog"></i> Role Settings</h3>
+            <div class="clearfix"></div>
+        </div>
+        <div class="kv-panel-before">
+            <div class="row">
+                <form id="role-form" class="form-horizontal kv-form-horizontal" method="post">
+                    <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+                    <div class="form-group field-role-role_name">
+                        <label class="control-label col-md-2" for="role-role_name">Role Name</label>
+                        <div class="col-md-10">
+                            <select id="roleName" class="form-control form-select mb-3" name="name">
+                                <% for(var i = 0;i < results.length;i++){ %>
+                                <option value="<%- results[i].id %>"
+                                        <% if(id == results[i].id){ %>
+                                        selected=""
+                                        <% } %>
+                                ><%- results[i].name %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <% for(var i = 0;i < actions.length;i++) { %>
+                            <th><%= actions[i] %>
+                                <input onclick="checkthis('<%= actions[i] %>')" type="checkbox"
+                                       id="all<%= actions[i] %>">
+                            </th>
+                            <% } %>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <% for(var i = 0;i < routes.length;i++) { %>
+                        <tr>
+                            <td>
+                                <% var ename = routes[i] %>
+                                <%= ename %></td>
+                            <% for(var x = 0;x < actions.length;x++) { %>
+                            <td><input name="params[<%= ename %>][<%= actions[x] %>]" class="<%= actions[x] %>"
+                                        <% if(json && json.hasOwnProperty(ename) && json[ename].indexOf(actions[x]) >= 0) { %>
+                                        <%= 'checked="checked"' %>
+                                        <% } %>
+                                       title="Role for <%= routes[i] %> <%= actions[x] %>" type="checkbox"></td>
+                            <% } %>
+                        </tr>
+                        <% } %>
+
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

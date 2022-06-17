@@ -1,0 +1,67 @@
+.border {
+    border: .03cm solid #000
+}
+
+.border-right {
+    border-right: .03cm solid #000
+}
+
+.border-left {
+    border-left: .03cm solid #000
+}
+
+.border-top {
+    border-top: .03cm solid #000
+}
+
+.border-bottom {
+    border-bottom: .03cm solid #000
+}
+
+.col-sm-12 {
+    width: 100%;
+}
+
+.col-sm-11 {
+    width: 91.66666666666666%;
+}
+
+.col-sm-10 {
+    width: 83.33333333333334%;
+}
+
+.col-sm-9 {
+    width: 75%;
+}
+
+.col-sm-8 {
+    width: 66.66666666666666%;
+}
+
+.col-sm-7 {
+    width: 58.333333333333336%;
+}
+
+.col-sm-6 {
+    width: 50%;
+}
+
+.col-sm-5 {
+    width: 41.66666666666667%;
+}
+
+.col-sm-4 {
+    width: 33.33333333333333%;
+}
+
+.col-sm-3 {
+    width: 25%;
+}
+
+.col-sm-2 {
+    width: 16.666666666666664%;
+}
+
+.col-sm-1 {
+    width: 8.333333333333332%;
+}

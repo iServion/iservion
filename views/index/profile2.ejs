@@ -1,0 +1,112 @@
+<div class="profile-page">
+    <form class="user-data-form" id="form-profile" method="post" action="/profile" enctype="multipart/form-data">
+
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="profile-banner">
+            <div class="top">
+                <img src="/assets/two/images/profile-banner.png" alt="img" />
+                <input type="file" class="d-none"    id="profile-banner" />
+                <label for="profile-banner">
+                    <img src="/assets/two/images/camera.svg" alt="img" />
+                </label>
+            </div>
+            <div class="bottom">
+                <div class="email">
+                    <p><%- data.username%></p>
+                    <span><%- role.name%></span>
+                </div>
+                <div class="input">
+                    <input type="file" id="profile-img-1" name="<%- routeName %>[image]" class="d-none" />
+                    <label for="profile-img-1">choose file</label>
+                </div>
+            </div>
+            <div class="profile-view">
+                <img src="<%- userAvatar%>" alt="profile" />
+            </div>
+        </div>
+        <div class="profile-form">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="left">
+                        <div class="input-item">
+                            <label for="fullname"><%- attributeData.labels["fullname"] %> <%- attributeData.fields.fullname.required ? "*" : "" %></label>
+                            <input type="text"   class="form-control " id="fullname" name="<%- routeName %>[fullname]" placeholder="<%- attributeData.fields.fullname.placeholder %>" <%- attributeData.fields.fullname.required ? "required" : "" %>  value="<%- data.fullname %>">
+                        </div>
+                        <div class="input-item">
+                            <label for="address"><%- attributeData.labels["address"] %> <%- attributeData.fields.address.required ? "*" : "" %></label>
+                            <input type="text"   class="form-control " id="address" name="<%- routeName %>[address]" placeholder="<%- attributeData.fields.address.placeholder %>" <%- attributeData.fields.address.required ? "required" : "" %>  value="<%- data.address %>">
+                        </div>
+                        <div class="input-item">
+                            <label for="phone"><%- attributeData.labels["phone"] %> <%- attributeData.fields.phone.required ? "*" : "" %></label><br>
+                            <input type="tel"   class="form-control " id="myphone" placeholder="<%- attributeData.fields.phone.placeholder %>" <%- attributeData.fields.phone.required ? "required" : "" %>  value="<%- data.phone %>">
+                            <input type="hidden"  value="<%- data.phone %>" id="phone" name="<%- routeName %>[phone]">
+                        </div>
+                        <div class="input-item">
+                            <label for="city"><%- attributeData.labels["city"] %> <%- attributeData.fields.city.required ? "*" : "" %></label>
+                            <input type="text"   class="form-control " id="city" name="<%- routeName %>[city]" placeholder="<%- attributeData.fields.city.placeholder %>" <%- attributeData.fields.city.required ? "required" : "" %>  value="<%- data.city %>">
+                        </div>
+
+                        <div class="custom-dropdown">
+                                <label for="language">Language</label>
+                                <select class="form-control form-select"  name="<%- routeName %>[language]" placeholder="<%- attributeData.fields.language.placeholder %>" <%- attributeData.fields.phone.required ? "required" : "" %> >
+                                    <option value="lang_en" <%- data.language == "lang_en" ? "selected" : ""%>>English</option>
+                                    <option value="lang_id" <%- data.language == "lang_id" ? "selected" : ""%>>Bahasa</option>
+                                    <option value="lang_jp" <%- data.language == "lang_jp" ? "selected" : ""%>>Japan</option>
+                                    <option value="lang_fr" <%- data.language == "lang_fr" ? "selected" : ""%>>France</option>
+                                </select>
+                        </div>
+
+                        <div class="form-footer pt-2">
+                            <div class="notice">
+                                <span>*Required & can not empty</span>
+                            </div>
+                            <div class="submit">
+                                <button type="button"  id="submit-profile">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="image-upload-sec">
+                        <p>Upload Verify Sign Approval</p>
+                        <input id="upload-sig" type="file" class="d-none" />
+                        <label for="upload-sig">
+                            <img src="/assets/two/images/big-user.svg" alt="img" />
+                            <span>Clik here to upload a image to start cropping</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="password-change">
+        <h2 class="pb-3">Change Your Password</h2>
+        <form>
+
+
+
+
+            <div class="input-item w-100">
+                <label for="address3">Current Password</label>
+                <input type="password" class="form-control" id="passwordNow" name="passwordNow" placeholder="Your current password">
+            </div>
+            <div class="input-item w-50">
+                <label for="address4">New Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Your password">
+            </div>
+            <div class="input-item w-50">
+                <label for="address5">Repeat Password</label>
+                <input type="password" class="form-control" id="passwordRepeat" name="password" placeholder="Password Repeat">
+            </div>
+            <div class="form-footer w-100">
+                <div class="notice">
+                    <span>*New Password & Password Repeat must equal</span>
+                </div>
+                <div class="submit">
+                    <button id="password-submit" type="button">update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

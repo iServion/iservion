@@ -1,0 +1,29 @@
+<div class="">
+    <%- UI.Form.breadcrumb(frameworkcss, [{text: LANGUAGE['home'], href: "/dashboard"}, {
+        text: LANGUAGE['grid_list'],
+        active: true
+    }]) %>
+
+    <div class="page-header">
+        <h2><%- titleApp %></h2>
+        <small><%- companyName %></small>
+    </div>
+
+    <%- UI.Form.grid(frameworkcss, {
+        routeName: routeName,
+        levels: levels,
+        header: titleHeader,
+        gridFilters: gridFilters,
+        LANGUAGE: LANGUAGE,
+        paginationApp: paginationApp,
+        advanceSearch : advanceSearch
+    }) %>
+</div>
+
+
+<%- UI.Modal.grid(frameworkcss, {
+    attributeData: attributeData,
+    visibles: visibles,
+    invisibles: invisibles,
+    routeName: routeName
+}) %>

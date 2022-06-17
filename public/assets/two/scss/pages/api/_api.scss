@@ -1,0 +1,32 @@
+.api-page {
+    padding: 50px 20px;
+
+    p {
+        font-size: 20px;
+        line-height: 30px;
+        color: rgba($color: $black, $alpha: 0.6);
+    }
+    
+    a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 142px;
+        height: 40px;
+        background-color: #93A5FF;
+        color: #ffffff;
+        text-transform: uppercase;
+        border-radius: 5px;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .copy-token {
+        .input-group-text,
+        .btn-right {
+            border-radius: 0;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+
+
+<%- UI.Form.breadcrumb(frameworkcss, [{text: LANGUAGE['home'], href:"/dashboard"}, {text: LANGUAGE['grid_list'], href:"/"+routeName}, {text: LANGUAGE['update'], active: true}]) %>
+
+
+<div class="page-header">
+    <h2><%- titleApp %></h2>
+    <small><%- companyName %></small>
+</div>
+
+<% include _form.ejs %>

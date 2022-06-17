@@ -1,0 +1,216 @@
+<div class="container">
+    <div class="page-header">
+        <h1><%= titleApp %> Profile</h1>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-7 ">
+            <div class="panel panel-info boxy">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-user"></i>Update Profile</h3></div>
+                <div class="panel-body">
+                    <div class="box box-info">
+
+                        <div class="box-body">
+                            <div class="col-sm-6">
+                                <div align="center">
+                                    <img alt="Your Pic" src="<%- data.image ? data.image.indexOf("http") > -1 ? data.image : "/uploads/"+ routeName+"/"+data.image : "/img/user.png" %>" id="image_select" class="img-circle img-responsive">
+                                    <div style="color:#999;">click here to change profile image</div>
+                                    <!--Upload Image Js And Css-->
+                                </div>
+                                <br>
+                                <!-- /input-group -->
+                            </div>
+                            <div class="col-sm-6">
+                                <h4 style="color:#00b1b1;"><%= data.username %> </h4></span>
+                                <span><p><%= role.name %> </p></span>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr style="margin:5px 0 5px 0;">
+
+                                <form id="form-profile" method="post" action="/profile" enctype="multipart/form-data">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                                <input onchange="handleFile(this.files)" id="image" name="<%- routeName %>[image]" class="hidden"  type="file">
+
+                                <div class="form-group divfullname">
+                                    <label for="fullname"><%- attributeData.labels["fullname"] %> <%- attributeData.fields.fullname.required ? "*" : "" %></label>
+                                    <input type="text"   class="form-control " id="fullname" name="<%- routeName %>[fullname]" placeholder="<%- attributeData.fields.fullname.placeholder %>" <%- attributeData.fields.fullname.required ? "required" : "" %>  value="<%- data.fullname %>">
+                                </div>
+                                <div class="form-group divaddress">
+                                    <label for="address"><%- attributeData.labels["address"] %> <%- attributeData.fields.address.required ? "*" : "" %></label>
+                                    <input type="text"   class="form-control " id="address" name="<%- routeName %>[address]" placeholder="<%- attributeData.fields.address.placeholder %>" <%- attributeData.fields.address.required ? "required" : "" %>  value="<%- data.address %>">
+                                </div>
+                                <div class="form-group divcity">
+                                    <label for="city"><%- attributeData.labels["city"] %> <%- attributeData.fields.city.required ? "*" : "" %></label>
+                                    <input type="text"   class="form-control " id="city" name="<%- routeName %>[city]" placeholder="<%- attributeData.fields.city.placeholder %>" <%- attributeData.fields.city.required ? "required" : "" %>  value="<%- data.city %>">
+                                </div>
+
+                                <div class="form-group divphone">
+                                    <label for="phone"><%- attributeData.labels["phone"] %> <%- attributeData.fields.phone.required ? "*" : "" %></label><br>
+                                    <input type="text"   class="form-control " id="phone" name="<%- routeName %>[phone]" placeholder="<%- attributeData.fields.phone.placeholder %>" <%- attributeData.fields.phone.required ? "required" : "" %>  value="<%- data.phone %>">
+                                </div>
+                                <div class="form-group divlanguage">
+                                    <label for="language"><%- attributeData.labels["language"] %> <%- attributeData.fields.language.required ? "*" : "" %></label>
+                                    <select class="form-control form-select"  name="<%- routeName %>[language]" placeholder="<%- attributeData.fields.language.placeholder %>" <%- attributeData.fields.phone.required ? "required" : "" %> >
+                                        <option value="lang_en" <%- data.language == "lang_en" ? "selected" : ""%>>English</option>
+                                        <option value="lang_id" <%- data.language == "lang_id" ? "selected" : ""%>>Bahasa</option>
+                                        <option value="lang_jp" <%- data.language == "lang_jp" ? "selected" : ""%>>Japan</option>
+                                        <option value="lang_fr" <%- data.language == "lang_fr" ? "selected" : ""%>>France</option>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <button type="submit" class="btn btn-block btn-lg btn-success">
+                                            <span class="fa fa-paper-plane"></span> <%- LANGUAGE['submit']%>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <p class="text-muted"><strong>*</strong><%- LANGUAGE['required_not_empty']%> </p>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+
+
+            <div class="panel panel-danger boxy">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-lock"></i>Upload Verify Sign Approval</h3></div>
+                <div class="panel-body">
+                    <div class="box box-info">
+                        <div class="box-body">
+
+                            <div class="clearfix"></div>
+
+                            <div class="upload-msg" >
+                                Clik here to upload a image to start cropping
+                            </div>
+                            <div id="image-container" class="d-flex justify-content-center" style="display: none" >
+                                <img id="imagecrop" src="<%- verify_signed%>" class="img-fluid">
+                            </div>
+                            <input id="verify_signed" name="<%- routeName %>[verify_signed]" class="hidden"  style="display: none" type="file">
+
+                            <div class="d-flex justify-content-center"  >
+                                <p>
+                                    <button type="button" class="btn btn-info" id="crop" style="display: none">Crop</button>
+                                </p>
+                            </div>
+
+
+
+
+
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+
+            <div class="panel panel-danger boxy">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-lock"></i> Change Your Password</h3></div>
+                <div class="panel-body">
+                    <div class="box box-info">
+                        <div class="box-body">
+
+                            <div class="clearfix"></div>
+
+                                <div class="form-group divpassword">
+                                    <label for="password">Password Current</label>
+                                    <input type="password" class="form-control" id="passwordNow" name="passwordNow" placeholder="Password Anda Saat Ini">
+                                </div>
+
+                                <hr style="margin:5px 0 5px 0;">
+
+                                <div class="form-group divpassword">
+                                    <label for="password">New Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password yang diinginkan">
+                                </div>
+
+                                <div class="form-group divpassword">
+                                    <label for="password">Password Repeat</label>
+                                    <input type="password" class="form-control" id="passwordRepeat" name="password" placeholder="Password Repeat">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <button id="password-submit" type="button" class="btn btn-block btn-lg btn-success">
+                                            <span class="fa fa-paper-plane"></span> Update
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <p class="text-muted"><strong>*</strong>New Password & Password Repeat must equal </p>
+                                    </div>
+                                </div>
+
+
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <br>
+
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+
+    </div>
+</div>
+
+
+
+<div class="modal fade docs-cropped" id="getCroppedCanvasModal" role="dialog" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="getCroppedCanvasTitle">Cropped</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="submit-to-server">Save changes</button>
+                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+            </div>
+        </div>
+    </div>
+</div>

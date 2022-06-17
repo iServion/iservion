@@ -1,0 +1,78 @@
+<script>
+    var datas = <%- JSON.stringify(datas, null, 2) %>;
+
+    <% if(isSetup) { %>
+    window.setTimeout(function () {
+        location.href = "/zrole?id=<%- roleId %>"
+    }, 2500);
+    <% } %>
+
+
+    var displayData= function (page) {
+        var dataleft = ``
+        for(var i = 0; i< 10; i++) {
+            var n = (20*page) + i;
+            console.log(n)
+            var status = datas[n].status==1 ? "Active" : "Inactive";
+            var inactive= datas[n].status==1 ? "" : "inactive";
+            dataleft += `<tr><td>${(20*page) +(i+1)}</td><td>${datas[n].title}</td><td><span class="status ${inactive}">${status}</span></td></tr>`;
+        }
+
+        $(".data-left").html(dataleft)
+        var dataRight =``
+        for(var i = 10; i< 20; i++) {
+            var n = (20*page) + i;
+            var status = datas[n].status==1 ? "Active" : "Inactive";
+            var inactive= datas[n].status==1 ? "" : "inactive";
+            dataRight += `<tr><td>${(20*page) +(i+1)}</td><td>${datas[n].title}</td><td><span class="status ${inactive}">${status}</span></td></tr>`
+        }
+        $(".data-right").html(dataRight);
+    }
+
+    var datapage = 0;
+    var maxpage = 1;
+    var activepage = 0;
+    function prevnext() {
+        $(".gopage").each(function () {
+            maxpage = $(this).data("page");
+            if($(this).hasClass("active")) {
+                activepage = $(this).data("page");
+            }
+        });
+        if(activepage == 0){
+            $(".prev").addClass("disabled");
+        } else {
+            if(activepage == maxpage) {
+                $(".next").addClass("disabled");
+                $(".prev").removeClass("disabled");
+            } else {
+                $(".next").removeClass("disabled");
+                $(".prev").removeClass("disabled");
+
+            }
+        }
+    }
+
+    $(function () {
+        prevnext();
+        $(".gopage").on("click", function () {
+            $(".gopage").removeClass("active");
+            $(this).addClass("active");
+            prevnext();
+            displayData($(this).data("page"));
+        });
+        $(".left-tab").html(`<%- dashboardPanel %>`);
+        $(".prev").on("click",function () {
+            if(!$(this).hasClass("disabled")) {
+                activepage -=1;
+                $('li.gopage[data-page=' + activepage + ']').click();
+            }
+        });
+        $(".next").on("click",function () {
+            if(!$(this).hasClass("disabled")) {
+                activepage +=1;
+                $('li.gopage[data-page=' + activepage + ']').click();
+            }
+        });
+    });
+</script>

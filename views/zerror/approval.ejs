@@ -1,0 +1,55 @@
+<%- UI.Form.breadcrumb(frameworkcss, [{text: LANGUAGE['home'], href:"/dashboard"}, {text: LANGUAGE['grid_list'], href:"/"+routeName}, {text: LANGUAGE['update'], href : '/' + routeName+'/update/'+data.id}, {text: LANGUAGE['create'], href : '/'+routeName+'/create'}, {text: "Approval", active : true}]) %>
+
+<div class="page-header">
+    <h2><%- titleApp %></h2>
+    <small><%- companyName %></small>
+</div>
+
+<p>&nbsp;</p>
+<form id="form-group" method="post" action="" class="boxy" enctype="multipart/form-data" [[[NO_VALI_DATE_NOVALIDATE]]]  >
+
+<div class="boxy">
+    <table class="table table-striped"><tbody>
+			<tr>
+				<th class="can-copy"   data-name="{route}"><%- attributeData.labels.route %></th>
+				<td  class="can-copy" ><%- data.route %></td>
+				<th class="can-copy"  data-name="{description}"><%- attributeData.labels.description %></th>
+				<td class="can-copy"   ><%- data.description %></td>
+			</tr>
+			<tr>
+				<th class="can-copy"   data-name="{table}"><%- attributeData.labels.table %></th>
+				<td  class="can-copy"  colspan="3" ><%- data.table %></td>
+			</tr>
+</tbody></table>
+</div>
+
+    <input type="hidden" name="zapprovals[table]" value="<%- routeName %>">
+    <input type="hidden" name="zapprovals[id_data]" value="<%- data.id%>">
+    <input type="hidden" name="zapprovals[status]" id="status" value="1">
+    <input type="hidden" name="zapprovals[token]"  value="<%- data2.token%>">
+
+    <div class="boxy">
+        <div class="row">
+            <div class="col-md-6">
+                <%- UI.Form.group("approvers", zForms.label["approvers"], zForms.fn("approvers",{tabindex:1})); %>
+                <%- UI.Form.group("knowings", zForms.label["knowings"], zForms.fn("knowings",{tabindex:2})); %>
+            </div>
+            <div class="col-md-6">
+                <%- UI.Form.group("title", zForms.label["title"], zForms.fn("title",{tabindex:3})); %>
+                <%- UI.Form.group("type", zForms.label["type"], zForms.fn("type",{tabindex:4})); %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <a id="submit_preview" target="_blank" href="/<%- routeName%>/preview/<%- data2.token%>" class="btn btn-block btn-lg btn-warning"><span class="fa fa-paper-plane"></span> Preview</a>
+
+                <% if(data2.status < 2) {%>
+                <button id="submit_draft" type="button" class="btn btn-block btn-lg btn-primary"><span class="fa fa-paper-plane"></span> Save as Draft</button>
+                <button id="submit" type="button" class="btn btn-block btn-lg btn-success"><span class="fa fa-paper-plane"></span> Submit</button>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,81 @@
+<h1 class="page-title"><span>Dashboard /</span> <%- company_name%></h1>
+<div class="dashboard">
+    <% if(datas.length) {%>
+    <div class="server-list">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="list-set">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Service</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody class="data-left">
+                            <% for(var i = 0; i< 10; i++) {
+                                var status = datas[i].status==1 ? "Active" : "Inactive";
+                                var inactive= datas[i].status==1 ? "" : "inactive";
+                            %>
+                            <tr>
+                                <td><%- i+1%></td>
+                                <td><%- datas[i].title%></td>
+                                <td>
+                                    <span class="status <%- inactive%>"><%- status%></span>
+                                </td>
+                            </tr>
+                            <%}%>
+                            </tbody>
+                            </table>
+                        </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+
+                <div class="list-set">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Service</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody class="data-right">
+                            <% for(var i = 10; i< 20; i++) {
+                                var status = datas[i].status==1 ? "Active" : "Inactive";
+                                var inactive= datas[i].status==1 ? "" : "inactive";
+                            %>
+                            <tr>
+                                <td><%- i+1%></td>
+                                <td><%- datas[i].title%></td>
+                                <td>
+                                    <span class="status <%- inactive%>"><%- status%></span>
+                                </td>
+                            </tr>
+                            <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="pagination-area">
+            <ul>
+                <li class="arrow  prev"><a href="#"><img src="/assets/two/images/arr-left.svg" alt="arrow"></a></li>
+                <% for(var i = 1;i<= countPage;i++) {
+                    var active = i == 1 ? `class="active gopage"` : `class="gopage"`;
+                %>
+                <li <%- active%>  data-page="<%- (i - 1)%>"><a href="#">0<%- i%></a></li>
+                <%}%>
+                <li class=" arrow next"><a href="#"><img src="/assets/two/images/arr-right.svg" alt="arrow"></a></li>
+            </ul>
+        </div>
+    </div>
+    <%}%>
+</div>

@@ -1,0 +1,117 @@
+a:hover, a:focus {
+    color: #2a6496;
+    text-decoration: none;
+}
+.square-service-block{
+    position:relative;
+    overflow:hidden;
+    margin:15px auto;
+}
+.square-service-block a {
+    background-color: #e74c3c;
+    border-radius: 5px;
+    display: block;
+    padding: 10px 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.square-service-blockx a {
+    background-color: #e74c3c;
+    border-radius: 5px;
+    display: block;
+    padding: 60px 20px;
+    text-align: center;
+    width: 100%;
+}
+.square-service-block a:hover{
+    background-color: rgba(231, 76, 60, 0.8);
+    border-radius: 5px;
+}
+
+
+.square-service-block-warning{
+    position:relative;
+    overflow:hidden;
+    margin:15px auto;
+}
+.square-service-block-warning a {
+    background-color: #f39c12;
+    border-radius: 5px;
+    display: block;
+    padding: 10px 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.square-service-block-warning a:hover{
+    background-color: rgba(231, 76, 60, 0.8);
+    border-radius: 5px;
+}
+
+
+.square-service-block-success{
+    position:relative;
+    overflow:hidden;
+    margin:15px auto;
+}
+.square-service-block-success a {
+    background-color: #00a65a;
+    border-radius: 5px;
+    display: block;
+    padding: 10px 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.square-service-block-success a:hover{
+    background-color: rgba(231, 76, 60, 0.8);
+    border-radius: 5px;
+}
+
+
+.ssb-icon {
+    color: #fff;
+    display: inline-block;
+    font-size: 28px;
+    margin: 0 0 20px;
+}
+
+h2.ssb-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 200;
+    margin:0;
+    padding:0;
+    text-transform: uppercase;
+}
+.badge-error {
+    background-color: #b94a48;
+}
+.badge-error:hover {
+    background-color: #953b39;
+}
+.badge-warning {
+    background-color: #f89406;
+}
+.badge-warning:hover {
+    background-color: #c67605;
+}
+.badge-success {
+    background-color: #468847;
+}
+.badge-success:hover {
+    background-color: #356635;
+}
+.badge-info {
+    background-color: #3a87ad;
+}
+.badge-info:hover {
+    background-color: #2d6987;
+}
+.badge-inverse {
+    background-color: #333333;
+}
+.badge-inverse:hover {
+    background-color: #1a1a1a;
+}

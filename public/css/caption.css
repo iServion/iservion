@@ -1,0 +1,19 @@
+.caption {
+    width:60%;
+    bottom: .3rem;
+    position: absolute;
+    background:#000;
+    left:20%;
+}
+
+.thumbnail {
+    border: 0 none;
+    box-shadow: none;
+    margin:0;
+    padding:0;
+}
+
+.caption h4 {
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+}

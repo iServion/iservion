@@ -1,0 +1,23 @@
+# This is a sample build configuration for Docker.
+# Check our guides at https://confluence.atlassian.com/x/O1toN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+# https://community.atlassian.com/t5/Answers-Developer-Questions/Pipelines-deploy-with-rsync/qaq-p/474381
+image: atlassian/default-image:2
+
+pipelines:
+  default:
+    - step:
+        services:
+          - docker
+        script: # Modify the commands below to build your repository.
+           - git diff --name-only --diff-filter=ADMR @~..@ > diff.txt
+           - apt-get update && apt-get install -y grep
+           - if [ $BITBUCKET_BRANCH == 'master' ]; then
+           -    rsync -avzc --stats --delete --exclude-from=deployment-exclude-list.txt . root@injani.com:/var/www/monitoring/
+           -    if [[ $(awk '$1 ~ /package\.json/' diff.txt) ]]; then
+           -       ssh root@injani.com 'cd /var/www/monitoring/ && yarn install'
+           -    fi
+           -    ssh root@injani.com 'pm2 restart monitoring'
+           - fi

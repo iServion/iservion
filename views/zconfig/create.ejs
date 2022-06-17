@@ -1,0 +1,12 @@
+<nav class="breadcrumb pull-right boxy-small">
+	<a class="breadcrumb-item" href="dashboard"><%- LANGUAGE['home']%></a> /
+	<a class="breadcrumb-item" href="/<%- routeName%>"><%- LANGUAGE['grid_list']%></a> /
+	<span class="breadcrumb-item active"><%- LANGUAGE['create']%></span>
+</nav>
+
+<div class="page-header">
+	<h2><%- titleApp %></h2>
+	<small><%- companyName %></small>
+</div>
+
+<% include _form.ejs %>

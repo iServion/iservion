@@ -1,0 +1,15 @@
+/*
+ * Specific styles of signin component
+ */
+/*
+ * General styles
+ */
+.login-container {
+    background: rgba(27, 85, 117, 0.9) none repeat scroll 0 0;
+    padding:3px 50px 30px 50px;
+}
+
+.login-title {
+   color: white;
+    font-size: 30px;
+}

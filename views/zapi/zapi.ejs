@@ -1,0 +1,57 @@
+<h1>Server API</h1>
+<p>Lets you get all of the statistics of your outbound emails for a specific server. These statistics are stored permantently and do not expire. All stats use EST timezone</p>
+
+<%if(hasApi){%>
+<div class="mb-3">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Your Token</span>
+        <input type="text" class="form-control can-copy" value="<%- api.token%>" data-name="<%- api.token%>">
+        <span class="input-group-text" onclick="copyToClipboard('<%- api.token%>')" style="cursor: pointer">Copy</span>
+    </div>
+    <%}%>
+<hr>
+
+<% if(!hasApi) {%>
+<button class="btn btn-success btn-create">Create</button><br>
+<span class="badge bg-danger" >You have not create API yet</span><br>
+<%} else { %>
+
+<h3>Health Tools</h3>
+<code>
+    curl "<%- url%>/api/health"
+    -X POST
+    -H "Accept: application/json"
+    -H "Content-Type: application/json"
+    -H "X-Token: <%- api.token%>"
+
+</code>
+<p>&nbsp;</p>
+
+
+<h3>Service</h3>
+<code>
+    curl "<%- url%>/api/service"
+    -X POST
+    -H "Accept: application/json"
+    -H "Content-Type: application/json"
+    -H "X-Token: <%- api.token%>"
+    -d  "{\"server_id\":1,\"service\":\"ufw.service\"}"
+
+</code>
+
+<p>&nbsp;</p>
+
+<h3>Client PC</h3>
+<p>Example set CSV file on windows : <code>wmic /output:C:\json\csv.csv product get name,version /format:csv</code>
+</p>
+<p>Parameter <b>code</b> can be fit with your client pc</p>
+<code>
+    curl "<%- url%>/api/client"
+    -X PUT
+    -H "X-Token: <%- api.token%>"
+    -F "code=YOUR_CODE"
+    -F "file=@C:\json\csv.csv"
+</code>
+<br>
+
+<%} %>

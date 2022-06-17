@@ -1,0 +1,37 @@
+.ide_editor {
+    width: 100%;
+    height: 400px;
+}
+.ide_editor_200 {
+    width: 100%;
+    height: 200px;
+}
+.boxy-small {
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 2px;
+    border: 0;
+    padding: 5px;
+}
+
+.boxy {background-color: #fff;-webkit-box-shadow: 0 8px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);box-shadow: 0 8px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 2px;border: 0;padding: 10px;  }
+.gridbox {background-color: #fff;-webkit-box-shadow: 0 8px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);box-shadow: 0 8px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 2px 0 rgba(0, 0, 0, 0.19);border-radius: 2px;border: 0;padding: 30px 10px 20px 10px;  }
+
+.can-copy {
+    cursor: pointer;
+}
+.btn-rounded{cursor:pointer; border-radius: 50%;box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 10%);}
+.btn-pointer {
+    cursor: pointer;
+}
+
+#data_actionColumn {
+    white-space: nowrap;
+    overflow: hidden;
+    width:90px;
+}
+
+
+
+

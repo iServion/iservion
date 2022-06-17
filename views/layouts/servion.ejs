@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Monitoring Server</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.css" rel="stylesheet" />
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/front/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/front/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/front/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/front/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="/assets/front/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="/assets/front/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <style type="text/css">
+        #google-sign-in {
+            text-align: center;
+            display: inline-block;
+            width: 191px;
+            height: 46px;
+            cursor: pointer;
+            background: url(/img/google/btn_google_signin_dark_normal_web.png);
+        }
+
+        .avatar-svg {
+            margin-right: 10px;;
+        }
+        .text-right {
+            text-align: right !important;
+            padding-right: 10px !important;
+        }
+    </style>
+    <link href="/assets/front/assets/css/theme.css" rel="stylesheet" />
+</head>
+
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-4 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand" href="/"><img src="/assets/front/assets/img/gallery/logo.png" height="24" alt="..." /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+            <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+                    <li class="nav-item px-2" ><a class="nav-link fw-medium active" aria-current="page" href="/">Home</a></li>
+                    <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#help">Help</a></li>
+                </ul>
+                <% if(isLogin) {%>
+                <form class="ps-lg-5"><a class="btn btn-light order-1 order-lg-0" href="/zdashboard">Dashboard
+                        <svg class="bi bi-person-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                        </svg></a>
+                </form>
+                <% } else {%>
+                <form class="ps-lg-5"><a class="btn btn-light order-1 order-lg-0" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">login
+                        <svg class="bi bi-person-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                        </svg></a>
+                </form>
+                <%} %>
+            </div>
+        </div>
+    </nav>
+
+
+    <%- include("./../"+renderBody) %>
+
+    <section class="pt-6" id="pricingTable">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-xxl-5 text-center mx-auto mb-5">
+                    <h2>DIGITAL TRANSFORMATION</h2>
+                    <p class="mb-5">Time-consuming paperwork shouldn’t hold you back. Start signing digitally with Privy, and enjoy our features designed to support all your needs.</p>
+                </div>
+            </div>
+            <div class="row h-100">
+                <div class="col-sm-6 col-xl-3 mb-3">
+                    <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <i class="fas fa-map fa-5x text-info"></i>
+                                <h5 class="my-3">Create Your E-Signature
+                                </h5>
+                                <ul class="list-unstyled">
+                                    <li>Once you've uploaded a document, you can draw your new signature using your trackpad or mouse. Alternatively, you can upload or take a photo of your signature using your device's camera.
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-3">
+                    <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <i class="fas fa-home fa-5x text-success"></i>
+                                <h5 class="my-3">Digital Signatures for Pro Users
+                                </h5>
+                                <ul class="list-unstyled">
+                                    <li>Pro subscribers have access to digital signing for both self-signed and requested signatures. Digital signatures are stored for a quicker signing experience.
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-3">
+                    <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <i class="fas fa-building fa-5x text-primary"></i>
+                                <h5 class="my-3">Document Signing Made Easy
+                                </h5>
+                                <ul class="list-unstyled">
+                                    <li>Approvalsys is the best free application for creating electronic signatures. Upload a document, create your signature, and sign the document in under a minute.
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-3">
+                    <div class="card card-span shadow py-4 h-100 border-top border-4 border-primary">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <i class="fas fa-car fa-5x text-danger"></i>
+                                <h5 class="my-3">Secure Online Signing
+                                </h5>
+                                <ul class="list-unstyled">
+                                    <li>All connections and file transfers are secured with a 256-bit TLS encryption. This military-grade security guarantees the privacy of documents and online signatures.
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+    <section class="py-8" id="team">
+        <div class="bg-holder" style="background-image:url(/assets/front/assets/img/gallery/testimonial-bg.png);background-position:center;background-size:cover;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-xxl-5 text-center mx-auto mb-5">
+                    <h2>Valued customers with valuable feedback</h2>
+                    <p class="mb-5">Feedbacks from our happy users. Become one of them. </p>
+                </div>
+            </div>
+            <div class="carousel slide" id="carouselExampleDark" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="row h-100">
+                            <div class="col-lg-6 mb-3 mb-md-0">
+                                <div class="card card-span h-100 bg-transparent">
+                                    <div class="card-body my-2">
+                                        <div class="d-sm-flex"><img class="img-fluid me-3 me-md-2 me-lg-3" src="/assets/front/assets/img/gallery/mark.png" height="100" alt="..." />
+                                            <div class="flex-1 ps-2">
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <p class="my-3">&quot;I've been using servion for more than a year and I must say I've never had such reliable service provider to work with. They've helped me out a lot&quot;</p>
+                                                <h6 class="mb-0 fs--1">-Erich Marks</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3 mb-md-0">
+                                <div class="card card-span h-100 bg-transparent">
+                                    <div class="card-body my-2">
+                                        <div class="d-sm-flex"><img class="img-fluid me-3 me-md-2 me-lg-3" src="/assets/front/assets/img/gallery/emily.png" height="100" alt="..." />
+                                            <div class="flex-1 ps-2">
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <p class="my-3">&quot;I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is&quot;</p>
+                                                <h6 class="mb-0 fs--1">-Emily Hartman</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <div class="row h-100">
+                            <div class="col-lg-6 mb-3 mb-md-0">
+                                <div class="card card-span h-100 bg-transparent">
+                                    <div class="card-body my-2">
+                                        <div class="d-sm-flex"><img class="img-fluid me-3 me-md-2 me-lg-3" src="/assets/front/assets/img/gallery/mark.png" height="100" alt="..." />
+                                            <div class="flex-1 ps-2">
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <p class="my-3">&quot;I've been using servion for more than a year and I must say I've never had such reliable service provider to work with. They've helped me out a lot&quot;</p>
+                                                <h6 class="mb-0 fs--1">-Erich Marks</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3 mb-md-0">
+                                <div class="card card-span h-100 bg-transparent">
+                                    <div class="card-body my-2">
+                                        <div class="d-sm-flex"><img class="img-fluid me-3 me-md-2 me-lg-3" src="/assets/front/assets/img/gallery/emily.png" height="100" alt="..." />
+                                            <div class="flex-1 ps-2">
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <p class="my-3">&quot;I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is&quot;</p>
+                                                <h6 class="mb-0 fs--1">-Emily Hartman</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row h-100">
+                            <div class="col-lg-6 mb-3 mb-md-0">
+                                <div class="card card-span h-100 bg-transparent">
+                                    <div class="card-body my-2">
+                                        <div class="d-sm-flex"><img class="img-fluid me-3 me-md-2 me-lg-3" src="/assets/front/assets/img/gallery/mark.png" height="100" alt="..." />
+                                            <div class="flex-1 ps-2">
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <p class="my-3">&quot;I've been using servion for more than a year and I must say I've never had such reliable service provider to work with. They've helped me out a lot&quot;</p>
+                                                <h6 class="mb-0 fs--1">-Erich Marks</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3 mb-md-0">
+                                <div class="card card-span h-100 bg-transparent">
+                                    <div class="card-body my-2">
+                                        <div class="d-sm-flex"><img class="img-fluid me-3 me-md-2 me-lg-3" src="/assets/front/assets/img/gallery/emily.png" height="100" alt="..." />
+                                            <div class="flex-1 ps-2">
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFCC00" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                </svg>
+                                                <p class="my-3">&quot;I ve been using Servion for hosting many of my wordpress websites and I truly appreciate how affordable it is&quot;</p>
+                                                <h6 class="mb-0 fs--1">-Emily Hartman</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><a class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next carousel-icon z-index-2" href="#carouselExampleDark" role="button" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></a>
+                <div class="row px-3 px-md-0 mt-4">
+                    <div class="col-12 position-relative">
+                        <ol class="carousel-indicators">
+                            <li class="active" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"></li>
+                            <li data-bs-target="#carouselExampleDark" data-bs-slide-to="1"></li>
+                            <li data-bs-target="#carouselExampleDark" data-bs-slide-to="2"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section class="pb-lg-0 pt-md-8 py-0">
+
+        <div class="container">
+            <div class="row align-items-center justify-content-xl-between py-5 border-klean">
+                <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="/assets/front/assets/img/gallery/robinhood.png" height="40" alt="..." /></div>
+                <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="/assets/front/assets/img/gallery/reddit.png" height="40" alt="..." /></div>
+                <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="/assets/front/assets/img/gallery/upcase.png" height="40" alt="..." /></div>
+                <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="/assets/front/assets/img/gallery/hubspot.png" height="40" alt="..." /></div>
+                <div class="col-auto col-md-4 col-lg-auto my-3 text-xl-start"><img src="/assets/front/assets/img/gallery/tunein.png" height="40" alt="..." /></div>
+            </div>
+        </div>
+        <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+    <section class="py-0 py-xxl-6" id="help">
+        <div class="bg-holder" style="background-image:url(/assets/front/assets/img/gallery/footer-bg.png);background-position:center;background-size:cover;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+            <div class="row min-vh-75 min-vh-xl-50 pt-10">
+                <div class="col-6 col-md-4 col-xl-3 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">PROPERTY</h5>
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Ray White</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Key Property</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Rumah123</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Rumah.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-xl-3 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">FEATURES</h5>
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Beginner Guide</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Move to Servion</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Website Builder</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Tools and Resources</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-xl-3 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">SUPPORT</h5>
+                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Help Center</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Submit a Ticket</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Contact Us</a></li>
+                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 mb-3">
+                    <h5 class="lh-lg fw-bold text-white">WE ACCEPT</h5>
+                    <ul class="list-unstyled list-inline mb-6 mb-md-0">
+                        <li class="list-inline-item mr-2"><a class="text-decoration-none" href="#!"><img class="list-social-icon" src="/assets/front/assets/img/gallery/visa.png" width="50" alt="..." /></a></li>
+                        <li class="list-inline-item mr-2"><a class="text-decoration-none" href="#!"><img class="list-social-icon" src="/assets/front/assets/img/gallery/master-card.png" width="50" alt="..." /></a></li>
+                        <li class="list-inline-item mr-2"><a class="text-decoration-none" href="#!"><img class="list-social-icon" src="/assets/front/assets/img/gallery/union-pay.png" width="50" alt="..." /></a></li>
+                        <li class="list-inline-item"><a class="text-decoration-none" href="#!"><img class="list-social-icon" src="/assets/front/assets/img/gallery/express.png" width="50" alt="..." /></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div class="row flex-center pb-3">
+                <div class="col-md-6 order-0">
+                    <p class="text-200 text-center text-md-start">All rights Reserved &copy; Injani systems, 2021</p>
+                </div>
+                <div class="col-md-6 order-1">
+                    <p class="text-200 text-center text-md-end"> Made with&nbsp;
+                        <svg class="bi bi-suit-heart-fill" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#A8B7FF" viewBox="0 0 16 16">
+                            <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
+                        </svg>&nbsp;by&nbsp;<a class="text-200 fw-bold" href="https://injani.com/" target="_blank">Injani Systems </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+
+                    <div class="row vh-100">
+                        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto d-table h-100">
+                            <div class="d-table-cell align-middle">
+
+                                <div class="text-center">
+                                    <h1 class="h2">Welcome back</h1>
+                                    <p class="lead">
+                                        Sign in to your account to continue
+                                    </p>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="m-sm-12">
+                                            <div class="text-center">
+                                                <img src="/img/user.png" alt="Login" class="img-fluid rounded-circle" width="132" height="132">
+                                            </div>
+                                            <form style="background-color: white" id="login-form" method="post" action="/login">
+                                                <input type="hidden" name="_csrf" value="<%- csrfToken%>">
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Username / Email</label>
+                                                    <input type="email" class="form-control" name="username" id="username" placeholder="Email" required="" autofocus="">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="" autofocus="">
+                                                    <small>
+                                                        <a href="/forgot">Forgot password?</a>
+                                                    </small>
+                                                </div>
+                                                <div>
+                                                    <label class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked="">
+                                        <span class="form-check-label">
+                                          Remember me next time
+                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="text-center mt-3">
+
+                                                    <div class="row" style="text-vertical-align:top;">
+                                                        <div class="col-lg-5 col-sm-12">
+                                                            <button type="submit" class="btn btn-lg btn-primary ">Sign in</button>
+                                                        </div>
+                                                        <div class="col-lg-5 col-sm-12">
+                                                            <div id="google-sign-in" class="" onclick="location.href='/auth/google'"></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+<script src="/assets/front/vendors/@popperjs/popper.min.js"></script>
+<script src="/assets/front/vendors/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/front/vendors/is/is.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+<script src="/assets/front/vendors/fontawesome/all.min.js"></script>
+<script src="/assets/front/assets/js/theme.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<%- include script.ejs%>
+
+</body>
+
+</html>

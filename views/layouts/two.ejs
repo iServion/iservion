@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Required head -->
+    <%- include head.ejs %>
+        <link rel="stylesheet" href="/assets/two/css/bootstrap.min.css" />
+        <!-- Main CSS -->
+        <link rel="stylesheet" href="/assets/two/css/style.css" />
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="/assets/two/images/favicon.png" type="image/x-icon" />
+</head>
+
+<body>
+<aside class="left-sidebar">
+        <div class="logo">
+            <a href="/zdashboard">
+                <img src="/assets/two/images/logo.svg" alt="logo">
+            </a>
+        </div>
+        <div class="mobile-title">
+            <div class="top">
+                <a href="#">
+                    <div class="user">
+                        <div class="img">
+                            <img src="<%- userAvatar %>" alt="<%- zuser.fullname%>">
+                        </div>
+                        <div class="arr">
+                            <img src="/assets/two/images/arr-down.svg" alt="arr">
+                        </div>
+                    </div>
+                </a>
+                <div class="left-slide ms-auto">
+                    <img src="/assets/two/images/arr-left.svg" alt="left-arr">
+                </div>
+            </div>
+            <div class="bottom">
+                <h2>SERVERS</h2>
+            </div>
+        </div>
+        <div class="title">
+            <p>PAGES</p>
+        </div>
+        <div class="menu">
+            <%- UI.Menu.run(UI.Menu.mainMenu({items:menuPlus,options:{class:"sidebar-nav"}}))%>
+            </div>
+            <div class="circle">
+                <img src="/assets/two/images/circle-design.svg" alt="circle" />
+            </div>
+    </aside>
+    <!-- Left sidebar menu end -->
+
+    <!-- Main content start -->
+    <main class="main dashboard">
+        <!-- Header start -->
+        <header class="header">
+            <div class="mobile-toggler">
+                <a href="#">
+                    <img src="/assets/two/images/mobile-toggler.svg" alt="img">
+                </a>
+            </div>
+            <div class="left left-tab">
+                <!-- Left panel -->
+            </div>
+            <div class="right">
+                <div class="notifications-message">
+                    <ul class="icons">
+                        <li>
+                            <a href="javascript:void(0);">
+                                <img src="/assets/two/images/noti.svg" alt="notifications">
+                                <span class="znotification-badge"></span>
+                            </a>
+                            <div class="notification-data dropdown">
+                                <h3>Notifications</h3>
+                                <div class="dropdown-filter">
+                                    <div class="filter-output">
+                                        <span>Today</span>
+                                        <img src="/assets/two/images/arr-down.svg" alt="arrow">
+                                    </div>
+                                    <ul class="filter-time">
+                                        <li><a href="#">This Month</a></li>
+                                        <li><a href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+                                <div class="notification-list"></div>
+
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <img src="/assets/two/images/massage.svg" alt="message">
+                                <span class="zactivity-badge"></span>
+                            </a>
+                            <div class="massage-data dropdown">
+                                <h3>Messages</h3>
+                                <div class="dropdown-filter">
+                                    <div class="filter-output">
+                                        <span>Today</span>
+                                        <img src="/assets/two/images/arr-down.svg" alt="arrow">
+                                    </div>
+                                    <ul class="filter-time">
+                                        <li><a href="#">This Month</a></li>
+                                        <li><a href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+                                <div class="message-list"></div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="user">
+                    <a href="#" >
+                        <div class="img">
+                            <img src="<%- userAvatar %>" alt="User">
+                        </div>
+                        <div class="down-arr">
+                            <img src="/assets/two/images/arr-down.svg" alt="arrow down">
+                        </div>
+                    </a>
+                    <div class="dropdown">
+                        <ul>
+                            <li class="has-submenu">
+                                <img src="/assets/two/images/arr-down.svg" alt="img">
+                                <a href="#">
+                                    <img src="/assets/two/images/d-1.svg" alt="img">
+                                    <span>Switch Company</span>
+                                </a>
+                                <div class="submenu">
+                                    <ul>
+                                          <% zcompanies.forEach(function (item) {
+                                    var zselected = companyId == item.company_id ? "selected" : "";
+                                    %>
+                                     <li><a href="/session/<%- item.company_id%>"><%- item.name%></a></li>
+                                    <%})%>
+                                    
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/profile">
+                                    <img src="/assets/two/images/d-2.svg" alt="img">
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="/assets/two/images/d-3.svg" alt="img">
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="/assets/two/images/d-4.svg" alt="img">
+                                    <span>Settings & Privacy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="/assets/two/images/d-5.svg" alt="img">
+                                    <span>Help Center</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/logout">
+                                    <img src="/assets/two/images/d-6.svg" alt="img">
+                                    <span>Log out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header end -->
+
+
+        <!-- Main content start -->
+        <main class="main-content custom-bg">
+            <%- renderBody ? include("./../"+renderBody) : "" %>
+        </main>
+        <!-- Main content end -->
+    </main>
+    <!-- Main content end -->
+
+                
+                
+ <!-- Scripts -->
+<script src="/assets/two/js/jquery.2.2.4.min.js"></script>
+<script src="/assets/two/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/two/js/custom.js"></script>
+<%- include script.ejs %>
+<script src="/assets/two/js/notification.js"></script>
+<script src="/assets/two/js/activity.js"></script>
+</body>
+</html>

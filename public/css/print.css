@@ -1,0 +1,158 @@
+
+page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+}
+
+@media print {
+    body, page {
+        margin: 0;
+    }
+}
+
+@page {
+    size: auto;
+    margin: 0mm;
+}
+
+.no-border {
+    border: none !important;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+    flex: 1;
+    padding: 3px 5px;
+}
+
+.col-sm-12 {
+    width: 100%;
+}
+.col-sm-11 {
+    width: 91.66666667%;
+}
+.col-sm-10 {
+    width: 83.33333333%;
+}
+.col-sm-9 {
+    width: 75%;
+}
+.col-sm-8 {
+    width: 66.66666667%;
+}
+.col-sm-7 {
+    width: 58.33333333%;
+}
+.col-sm-6 {
+    width: 50%;
+}
+.col-sm-5 {
+    width: 41.66666667%;
+}
+.col-sm-4 {
+    width: 33.33333333%;
+}
+.col-sm-3 {
+    width: 25%;
+}
+.col-sm-2 {
+    width: 16.66666667%
+}
+.col-sm-1 {
+    width: 8.33333333%;
+}
+
+.padding-2 {
+    padding:2px;
+}
+.padding-text {
+    padding: 3px 5px;
+}
+
+.font-8 {
+    font-size: 0.8em
+}
+
+.font-10 {
+    font-size: 1em
+}
+
+.font-12 {
+    font-size: 1.2em
+}
+
+.font-14 {
+    font-size: 1.4em
+}
+
+.font-16 {
+    font-size: 1.6em
+}
+
+.font-18 {
+    font-size: 1.8em
+}
+
+.font-20 {
+    font-size: 2em
+}
+
+.font-22 {
+    font-size: 2.2em
+}
+
+.font-24 {
+    font-size: 2.4em
+}
+
+.font-26 {
+    font-size: 2.6em
+}
+.thick {
+    font-weight: bold;
+}
+
+.thicker {
+    font-weight: 900;
+}
+
+.font-serif {
+    font-family: "Times New Roman", Times, serif
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+    padding-right: 10px;
+}
+
+#terbilang {
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.table {
+    width:100%;
+    border-collapse: collapse;
+}
+
+.header-table{
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    padding: 3px 5px 2px 5px;
+}
+.terbilang-label {
+    margin:20px auto;
+}

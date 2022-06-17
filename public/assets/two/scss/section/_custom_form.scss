@@ -1,0 +1,233 @@
+.custom-form {
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 30px;
+
+        .w-50 {
+            width: calc(50% - 5px) !important;
+        }
+
+        .w-100  {
+            width: 100%;
+        }
+
+        @media (max-width: 991.98px) {
+            .w-100,
+            .w-50 {
+                width: 100% !important;
+            }
+        }
+
+        .input-item {
+            margin-bottom: 10px;
+            position: relative;
+
+            > img {
+                position: absolute;
+                top: 46px;
+                right: 10px;
+                height: 6px;
+            }
+
+            label,
+            small {
+                display: block;
+                font-size: 14px;
+                color: rgba($color: $black, $alpha: 0.6);
+                text-transform: uppercase;
+            }
+
+            input,
+            textarea {
+                height: 45px;
+                border-radius: 5px;
+                background-color: #EFEFEF;
+                padding: 0 20px;
+                display: block;
+                width: 100%;
+                border: 1px solid transparent;
+                box-sizing: border-box;
+                font-size: 14px;
+
+                &::placeholder {
+                    color: rgba($color: $bColor, $alpha: 0.22);
+                    text-transform: uppercase;
+                }
+
+                &:focus {
+                    border-color: $primary-color;
+                }
+            }
+
+            textarea {
+                height: 200px;
+                padding-top: 20px;
+            }
+
+            &.has-dropdown {
+                ul {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    padding: 10px 0;
+                    background-color: $white;
+                    box-shadow: 0px 0px 4px rgba($color: $black, $alpha: 0.11);
+                    z-index: 99;
+                    margin-top: 5px;
+                    border-radius: 5px;
+                    transition: $transition;
+                    visibility: hidden;
+                    opacity: 0;
+
+                    li {
+                        a {
+                            display: block;
+                            color: rgba($color: $black, $alpha: 0.6);
+                            padding: 8px 10px;
+                            transition: $transition;
+                            text-transform: uppercase;
+                            font-size: 14px;
+
+                            &:hover {
+                                background-color: rgba(147, 165, 255, 0.14);
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+                    ul {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &.status {
+                display: flex;
+
+                .checkbox {
+                    margin-right: 20px;
+                }
+
+                @media (max-width: 767.98px) {
+                    flex-direction: column;
+                    margin-bottom: 0;
+
+                    .checkbox {
+                        margin-bottom: 15px;
+                    }
+                }
+
+                .switch {
+                    display: inline-flex;
+                    align-items: center;
+                    background-color: #EFEFEF;
+                    border-radius: 5px;
+
+                    span {
+                        height: 45px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 0 15px;
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        color: rgba($color: $black, $alpha: 0.6);
+                        border-radius: 5px;
+                        cursor: pointer;
+
+                        &.active {
+                            background-color: $primary-color;
+                            color: $white;
+                        }
+                    }
+                }
+
+            }
+
+            &.file-input {
+                .file {
+                    
+                    label {
+                        overflow: hidden;
+                        position: relative;
+                        height: 45px;
+                        line-height: 45px;
+                        border-radius: 5px;
+                        background-color: #EFEFEF;
+                        padding: 0 20px;
+                        display: flex;
+                        width: 100%;
+                        border: 1px solid transparent;
+                        box-sizing: border-box;
+                        font-size: 14px;
+                        z-index: 1;
+                        color: $white;
+                        cursor: pointer;
+
+                        span {
+                            white-space: nowrap;
+                        }
+
+                        .output {
+                            color: rgba($color: $black, $alpha: 0.6);
+                            white-space: nowrap;
+                            padding-left: 30px;
+                        }
+
+                        &::after {
+                            content: '';
+                            width: 132px;
+                            height: 100%;
+                            background-color: $primary-color;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: -1;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .form-footer {
+            margin-top: 20px;
+
+            .content {
+                p {
+                    // margin: 0;
+                    font-size: 14px;
+                    line-height: 24px;
+                    color: rgba($color: $black, $alpha: 0.6);
+                }
+
+                @media (max-width: 575px) {
+                    flex-direction: column;
+                    align-items: flex-start;
+
+                    p {
+                        margin-bottom: 15px;
+                    }
+                }
+
+                button {
+                    width: 142px;
+                    height: 45px;
+                    background-color: $primary-color;
+                    color: $white;
+                    text-transform: uppercase;
+                    border: 0;
+                    border-radius: 5px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+
+}

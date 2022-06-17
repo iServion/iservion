@@ -1,0 +1,42 @@
+<form id="form-group" method="post" action="" class="boxy" enctype="multipart/form-data" [[[NO_VALI_DATE_NOVALIDATE]]]  >
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <div class="page-header">
+
+    </div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<%- UI.Form.group("username", zForms.label["username"], zForms.fn("username",{tabindex:1})); %>
+			<%- UI.Form.group("fullname", zForms.label["fullname"], zForms.fn("fullname",{tabindex:4})); %>
+			<%- UI.Form.group("password", zForms.label["password"], zForms.fn("password",{tabindex:2})); %>
+			<%- UI.Form.group("phone", zForms.label["phone"], zForms.fn("phone",{tabindex:6})); %>
+			<%- UI.Form.group("address", zForms.label["address"], zForms.fn("address",{tabindex:5})); %>
+			<%- UI.Form.group("city", zForms.label["city"], zForms.fn("city",{tabindex:7})); %>
+			<%- UI.Form.group("language", zForms.label["language"], zForms.fn("language",{tabindex:15})); %>
+		</div>
+		<div class="col-md-6">
+			<%- UI.Form.group("role_id", zForms.label["role_id"], zForms.fn("role_id",{tabindex:10})); %>
+			<%- UI.Form.group("active", zForms.label["active"], zForms.fn("active",{tabindex:11})); %>
+			<%- UI.Form.group("image", zForms.label["image"], zForms.fn("image",{tabindex:9})); %>
+			<%- UI.Form.group("verify_signed", zForms.label["verify_signed"], zForms.fn("verify_signed",{tabindex:18})); %>
+		</div>
+	</div>
+	
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <%- UI.Form.submit() %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <p class="text-muted"><strong>*</strong> <%- LANGUAGE['required_not_empty'] %></p>
+        </div>
+    </div>
+
+</form>

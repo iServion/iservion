@@ -1,0 +1,57 @@
+<%- UI.Form.breadcrumb(frameworkcss, [{text: LANGUAGE['home'], href:"/dashboard"}, {text: LANGUAGE['grid_list'], href:"/"+routeName}, {text: LANGUAGE['update'], href : '/' + routeName+'/update/'+data.id}, {text: LANGUAGE['create'], href : '/'+routeName+'/create'}, {text: LANGUAGE['view'], active : true}]) %>
+
+
+<div class="page-header">
+    <h2><%- titleApp %></h2>
+    <small><%- companyName %></small>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-title"><h3><%- menuApp %> <%= data.id %></h3></div>
+    </div>
+    <div class="col-md-6">
+        <div class="btn-group <%- UI.Form.pullRight(frameworkcss)%>" role="group" aria-label="button">
+            <% if(levels.update){ %>
+            <a class="btn btn-info" href="/<%- routeName%>/update/<%= data.id  %>"
+               title="Update data"><i class="fa fa-pencil"></i> <%- LANGUAGE['update']%>
+            </a> &nbsp;
+            <% } %>
+            <% if(levels.delete){ %>
+            <button class="btn btn-danger" id="<%- routeName %>-delete" data-id="<%= data.id %>"
+                    title="Delete Data"><i class="fa fa-trash"></i> <%- LANGUAGE['delete'] %>
+            </button> &nbsp;
+
+            <% } %>
+            <% if(levels.create){ %>
+            <a class="btn btn-success" href="/<%- routeName%>/create" title="Create data"><i class="fa fa-plus"></i>
+                <%- LANGUAGE['create']%>
+            </a>
+            <% } %>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("<%- routeName %>-delete").addEventListener("click", deleteData);
+    function deleteData() {
+        if (window.confirm("<%- LANGUAGE['delete_confirm'] %>")) {
+            var http = new XMLHttpRequest();
+            var url = '/<%- routeName %>/delete';
+            var params = 'id=<%- data.id%>';
+            http.open('DELETE', url, true);
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            http.onreadystatechange = function () {//Call a function when the state changes.
+                if (http.readyState == 4 && http.status == 200) {
+                    location.href = "/<%- routeName%>"
+                }
+            }
+            http.send(params);
+        }
+    }
+</script>
+<p>&nbsp;</p>
+<div class="boxy">
+[[[GENERATE_VIEWJS]]]
+</div>

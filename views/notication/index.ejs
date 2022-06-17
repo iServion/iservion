@@ -1,0 +1,46 @@
+<div class="">
+    <%- UI.Form.breadcrumb(frameworkcss, [{text: LANGUAGE['home'], href: "/dashboard"}, {
+        text: LANGUAGE['grid_list'],
+        active: true
+    }]) %>
+
+    <div class="page-header">
+        <h2><%- titleHeader %></h2>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="float">
+                    <div class="btn-group float-end" role="group" aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-success btn-xs gridadd"><i class="fa fa-plus white-icon"></i></button>
+                        <button type="button" class="btn btn-info btn-xs gridexcel" title="Download Excel"><i class="fas fa-file-excel"></i></button>
+                        <button type="button" class="btn btn-warning btn-xs gridimport" title="<%- LANGUAGE['data_import'] %>"><i class="fas fa-file-import"></i></button>
+                        <button type="button" class="btn btn-info btn-xs gridsettings" title="Personalize grid settings" data-bs-toggle="modal" data-bs-target="#grid-modal"><i class="fa fa-cog"></i></button>
+                        <button type="button" class="btn btn-default btn-xs gridreload" title="Refresh grid filter"><i class="fas fa-redo"></i></button>
+                        <div class="btn-group" role="group">
+                            <button id="dropdownExport" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownExport">
+                                <a class="dropdown-item export-xls" href="#"><i class="text-success fa fa-file-excel-o"></i> Excel </a>
+                                <a class="dropdown-item export-pdf" href="#"><i class="text-danger fa fa-file-pdf-o"></i> PDF </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding-top: 7px;"></div>
+            </div>
+            <%- dataTable.table %>
+        </div>
+    </div>
+</div>
+
+
+
+<%- UI.Modal.grid(frameworkcss, {
+    attributeData: attributeData,
+    visibles: visibles,
+    invisibles: invisibles,
+    routeName: routeName
+}) %>

@@ -1,0 +1,208 @@
+
+page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+}
+
+page[size="A4"] {
+    width: 21cm;
+    height: 29.7cm;
+    font-size: 12px;
+    padding: 6mm;
+}
+
+page[size="A4"][layout="portrait"] {
+    width: 29.7cm;
+    height: 21cm;
+    font-size: 12px;
+    margin: 6mm;
+}
+
+page[size="A3"] {
+    width: 29.7cm;
+    height: 42cm;
+}
+
+page[size="A3"][layout="portrait"] {
+    width: 42cm;
+    height: 29.7cm;
+}
+
+page[size="A5"] {
+    width: 14.8cm;
+    height: 21cm;
+}
+
+page[size="A5"][layout="portrait"] {
+    width: 21cm;
+    height: 14.8cm;
+}
+
+page[size="A8"] {
+    width: 8cm;
+    height: 16cm;
+    font-size: 12px;
+    margin: 6mm;
+}
+
+@media print {
+    body, page {
+        margin: 0;
+    }
+}
+
+@page {
+    size: auto;   /* auto is the initial value */
+    margin: 0mm;  /* this affects the margin in the printer settings */
+}
+
+/*html {
+    background-color: #FFFFFF;
+    margin: 0px;  this affects the margin on the html before sending to printer
+}
+
+body {
+    margin: 10mm 15mm 10mm 15mm;  margin you want for the content
+}*/
+
+
+
+.no-border {
+    border: none !important;
+}
+
+.border {
+    border: .03cm solid #000
+}
+
+.border-right {
+    border-right: .03cm solid #000
+}
+
+.border-left {
+    border-left: .03cm solid #000
+}
+
+.border-top {
+    border-top: .03cm solid #000
+}
+
+.border-bottom {
+    border-bottom: .03cm solid #000
+}
+
+.row {
+    width: 96%;
+    float: left;
+}
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+    float: left;
+}
+
+.col-sm-12 {
+    width: 96%;
+}
+.col-sm-11 {
+    width: 88%;
+}
+.col-sm-10 {
+    width: 80%;
+}
+.col-sm-9 {
+    width: 72%;
+}
+.col-sm-8 {
+    width: 64%;
+}
+.col-sm-7 {
+    width: 56%;
+}
+.col-sm-6 {
+    width: 48%;
+}
+.col-sm-5 {
+    width: 40%;
+}
+.col-sm-4 {
+    width: 32%;
+}
+.col-sm-3 {
+    width: 24%;
+}
+.col-sm-2 {
+    width: 16%;
+}
+.col-sm-1 {
+    width: 8%;
+}
+
+.padding-2 {
+    padding:2px;
+}
+
+.font-8 {
+    font-size: 0.8em
+}
+
+.font-10 {
+    font-size: 1em
+}
+
+.font-12 {
+    font-size: 1.2em
+}
+
+.font-14 {
+    font-size: 1.4em
+}
+
+.font-16 {
+    font-size: 1.6em
+}
+
+.font-18 {
+    font-size: 1.8em
+}
+
+.font-20 {
+    font-size: 2em
+}
+
+.font-22 {
+    font-size: 2.2em
+}
+
+.font-24 {
+    font-size: 2.4em
+}
+
+.font-26 {
+    font-size: 2.6em
+}
+.thick {
+    font-weight: bold;
+}
+
+.thicker {
+    font-weight: 900;
+}
+
+.font-serif {
+    font-family: "Times New Roman", Times, serif
+}
+
+.text-center {
+    text-align: center;
+}
+
+#terbilang {
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.table {
+    width:100%;
+}

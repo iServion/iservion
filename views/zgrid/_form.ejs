@@ -1,0 +1,36 @@
+<form id="form-group" method="post" action="" class="boxy" enctype="multipart/form-data" [[[NO_VALI_DATE_NOVALIDATE]]]  >
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <div class="page-header">
+        <h3><%- titleHeader %></h3>
+    </div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<%- UI.Form.group("user_id", zForms.label["user_id"], zForms.fn("user_id",{tabindex:1})); %>
+			<%- UI.Form.group("visibles", zForms.label["visibles"], zForms.fn("visibles",{tabindex:2})); %>
+			<%- UI.Form.group("labels", zForms.label["labels"], zForms.fn("labels",{tabindex:5})); %>
+		</div>
+		<div class="col-md-6">
+			<%- UI.Form.group("route_name", zForms.label["route_name"], zForms.fn("route_name",{tabindex:4})); %>
+			<%- UI.Form.group("invisibles", zForms.label["invisibles"], zForms.fn("invisibles",{tabindex:3})); %>
+			<%- UI.Form.group("filter", zForms.label["filter"], zForms.fn("filter",{tabindex:6})); %>
+		</div>
+	</div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <%- UI.Form.submit() %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <p class="text-muted"><strong>*</strong> <%- LANGUAGE['required_not_empty'] %></p>
+        </div>
+    </div>
+
+</form>

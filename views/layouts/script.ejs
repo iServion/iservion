@@ -1,0 +1,9 @@
+<div id="modalpopup"><!-- Place at bottom of page --></div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/form.js"></script>
+<script src="/js/socket.js"></script>
+<script src="/js/app.js"></script>
+<%- moduleEnd %>
+<%- renderEnd ? include("../"+renderEnd) : "" %>
+<%- sessionFlash ? `<script>toastr.${sessionFlash.type}('${sessionFlash.message}','${sessionFlash.title}', {timeOut: 5000});</script>` : `` %>

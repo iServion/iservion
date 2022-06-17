@@ -1,0 +1,28 @@
+<div class="">
+    <%- UI.Form.breadcrumb(frameworkcss, [{text: LANGUAGE['home'], href: "/dashboard"}, {
+        text: LANGUAGE['grid_list'],
+        active: true
+    }]) %>
+
+    <div class="page-header">
+        <h3><%- titleHeader %></h3>
+    </div>
+
+    <div class="gridbox">
+        <div class="row">
+            <div class="float">
+                <%- dataTable.buttons2 %>
+            </div>
+            <div style="padding-top: 7px;"></div>
+        </div>
+        <%- dataTable.table %>
+    </div>
+</div>
+
+
+<%- UI.Modal.grid(frameworkcss, {
+    attributeData: attributeData,
+    visibles: visibles,
+    invisibles: invisibles,
+    routeName: routeName
+}) %>

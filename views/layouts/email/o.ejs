@@ -1,0 +1,14 @@
+<script>
+    $("#userId").on("change", function () {
+        var conditions = ['id'];
+        var params = [$(this).val()]
+            $.ajax({
+                url: '/ajax',
+                type: "post",
+                data: {select:" email ", table:"user", model:"text", field:"email", conditions:conditions, params:params},
+                success: function (data) {
+                    $("#username").val(data)
+                }
+            })
+    });
+</script>

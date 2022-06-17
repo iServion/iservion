@@ -1,0 +1,237 @@
+
+/*LOGIN FORM///////////////////////////////*/
+
+
+.logo {
+    margin-left: auto;
+    margin-right: auto;
+    width: 175px;
+}
+
+.form_warp {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+    margin-top: 50px;
+    background-color: #fff;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-color: #ddd;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+.hit-form_warp .dont_hav_ac {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 38px;
+    margin-bottom: 46px;
+    margin-right: 5%;
+    font-size: 13px;
+    color: #596377;
+    letter-spacing: 0;
+    line-height: 36px;
+}
+.other_signup .googel {
+    display: inline-block;
+    width: 49%;
+    padding: 8px 10px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #4285f4;
+    font-family: 'TitilliumWeb';
+    font-size: 17px;
+}
+
+.other_signup .facebook {
+    display: inline-block;
+    width: 49%;
+    padding: 8px 10px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #3b5998;
+    font-family: 'TitilliumWeb';
+    font-size: 17px;
+    float:right;
+}
+.Back_to_home{
+    position: absolute;
+    top: 38px;
+    left: 5%;
+}
+.get_start_btn {
+    display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #C6CCD7;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 10px;
+    color: #596377;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 12px;
+    padding: 0 20px;
+    height: 36px;
+    line-height: 36px;
+    text-decoration: none;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.form_warp h1 {
+    font-size: 34px;
+    font-weight: 400;
+    color: #434C5F;
+    font-family: 'TitilliumWeb';
+}
+.form_warp h3 {
+    font-weight: 400;
+    color: #596377;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-family: 'TitilliumWeb';
+}
+/*++++++++++++++++++++++++++++++
+      BASIC CONTACT FORM CSS
+ ++++++++++++++++++++++++++++++*/
+
+
+.box input[type="submit"] {
+    clear: both;
+    display: block;
+    height: auto;
+    padding: 0;
+    width: auto;
+    margin: 0 auto;
+    padding: 11px 50px;
+    border: solid 0px;
+    border-radius: 25px;
+    box-shadow: none;
+    color: #fff;
+    font-family: 'TitilliumWeb';
+    transition: all .3s ease-in;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+}
+
+.box input[type="submit"]:hover {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    transition: all .3s ease-in;
+}
+
+
+
+.forgot_pwd {
+    display: block;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    font-family: 'TitilliumWeb';
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+
+.box input {
+    padding: 10px 0;
+    margin-bottom: 30px;
+}
+.box textarea {
+    height: 80px;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+.box input, .box textarea {
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+    padding: 10px;
+    border: none;
+    color: #999;
+    border-radius: 4px;
+    border: 1px solid #999;
+    font-family: 'TitilliumWeb';
+}
+.box textarea {
+    margin-bottom: 30px;
+    color:#999;
+}
+
+.box form div {
+    position: relative;
+}
+.box form div label {
+    position: absolute;
+    top: 10px;
+    color: #999;
+    left: 15px;
+    transition: .5s;
+    background-color: #fff;
+    font-family: 'TitilliumWeb';
+    pointer-events: none;
+    font-weight: 400;
+}
+.box input:focus ~ label,
+.box textarea:focus ~ label,
+.box input:valid ~ label
+{
+    top: -10px;
+    color: #8855cf;
+    font-size: 14px;
+    font-weight: 400;
+}
+.box input:focus
+{
+    border:solid 1px #8855cf;
+}
+.box textarea label {
+    top: -12px;
+    left: 0px;
+    color: #999;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#contact_form a:hover,
+#contact_form a:focus {
+    color: #8a57cf!important;
+    text-decoration: none;
+}
+a:hover,
+a:focus {
+    text-decoration: none!important;
+}
+.terms_policy {
+    font-family: 'TitilliumWeb';
+    text-align: center;
+    color: #9E9E9E;
+}
+.terms_policy a {
+    display: inline-block;
+    font-family: 'TitilliumWeb';
+}
+.signup_logo {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    z-index: 99;
+}
+.purple_bg {
+    background-color: #8a57cf;
+}
+.purple_bg_hov:hover {
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, .25);
+    background-color: #8a57cf;
+    border: 1px solid #8a57cf;
+    transition: all .2s ease;
+}

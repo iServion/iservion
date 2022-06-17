@@ -1,0 +1,318 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+<script src="/js/jquery-sortable.js"></script>
+<script>
+    window.onerror = function (message, file, line, col, error) {
+        toastr.error(error.message, "Error occurred");
+        setTimeout(function () {
+            toastr.info("Please wait a moment while we repair.\n Please Relax", "Info");
+            ajaxDelete("/<%- routeName %>/grid",{},function (data) {
+                toastr.info("Please refresh / reload your browser.\n ", "Info");
+            });
+        }, 2500);
+        setTimeout(function () {
+            toastr.clear();
+            window.location.href = '/<%- routeName %>';
+        }, 4500);
+        return false;
+    };
+    $(function () {
+        $(".jsgrid-filter-row td").each(function () {
+            $(this).find("input[type=text]").addClass("form-search form-control form-control-sm").attr("placeholder", "search..");
+            $(this).find("input[type=number]").addClass("form-search  form-control form-control-sm").attr("placeholder", "search..");
+            $(this).find("select").addClass("form-search  form-control form-control-sm form-select");
+        })
+    });
+    var gridSettings = <%- JSON.stringify(gridFilters) %>;
+    var isSave = false;
+    var gridFields = {
+        no: {name: "no", title: '<%- attributeData.labels['no'] %>', width: 20},
+        
+		 id : {name: "id", title: "<%-  attributeData.labels['id']  %>", type:"text", width: 80}, 
+ 		 user_id : {name: "user_id", title: "<%-  attributeData.labels['user_id']  %>", type:"select", items: <%-  JSON.stringify(relations.user_idRow)  %>, valueField: "<%-  relations.user_id[0]  %>", textField: "name", width: 80}, 
+ 		 route_name : {name: "route_name", title: "<%-  attributeData.labels['route_name']  %>", type:"text", width: 80}, 
+ 		 visibles : {name: "visibles", title: "<%-  attributeData.labels['visibles']  %>", type:"text", itemTemplate: function (value) {return (value && value.length > 100) ? value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').substring(0,50) + '...' : value}, width: 90},  
+ 		 invisibles : {name: "invisibles", title: "<%-  attributeData.labels['invisibles']  %>", type:"text", itemTemplate: function (value) {return (value && value.length > 100) ? value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').substring(0,50) + '...' : value}, width: 90},  
+ 		 labels : {name: "labels", title: "<%-  attributeData.labels['labels']  %>", type:"text", itemTemplate: function (value) {return (value && value.length > 100) ? value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').substring(0,50) + '...' : value}, width: 90},  
+ 		 filter : {name: "filter", title: "<%-  attributeData.labels['filter']  %>", type:"text", itemTemplate: function (value) {return (value && value.length > 100) ? value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').substring(0,50) + '...' : value}, width: 90},  
+ 		 created_by : {name: "created_by", title: "<%-  attributeData.labels['created_by']  %>", type:"select", items: <%-  JSON.stringify(relations.created_byRow)  %>, valueField: "<%-  relations.created_by[0]  %>", textField: "name", width: 80}, 
+ 		 updated_by : {name: "updated_by", title: "<%-  attributeData.labels['updated_by']  %>", type:"select", items: <%-  JSON.stringify(relations.updated_byRow)  %>, valueField: "<%-  relations.updated_by[0]  %>", textField: "name", width: 80}, 
+ 		 created_at : {name: "created_at", title: "<%-  attributeData.labels['created_at']  %>", type:"text", itemTemplate: function (value) {return value ? value == '0000-00-00 00:00:00' ? '' : moment(value).format('YYYY-MM-DD HH:mm:ss') : '';}, width: 80}, 
+ 		 updated_at : {name: "updated_at", title: "<%-  attributeData.labels['updated_at']  %>", type:"text", itemTemplate: function (value) {return value ? value == '0000-00-00 00:00:00' ? '' : moment(value).format('YYYY-MM-DD HH:mm:ss') : '';}, width: 80}, 
+ 
+        actionColumn: {
+            type: "control", name: "actionColumn", width: 90, editButton: false,
+            itemTemplate: function (value, item) {
+                var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+                var $customViewButton = $("<button>").attr({class: "btn btn-info btn-sm"}).html("<span class='fa fa-eye'></span>").click(function (e) {
+                    location.href = "/<%- routeName %>/view/" + item.id;
+                    e.stopPropagation();
+                });
+                var $customEditButton = $("<button>").attr({class: "btn btn-success btn-sm"}).html("<span class='fa fa-pencil'></span>").click(function (e) {
+                    location.href = "/<%- routeName %>/update/" + item.id;
+                    e.stopPropagation();
+                });
+                var $customDeleteButton = $("<button>").attr({class: "btn btn-danger btn-sm"}).html("<span class='fa fa-trash'></span>").click(function (e) {
+                    if (window.confirm("<%- LANGUAGE['delete_confirm']%>")) {
+                        ajaxDelete("/<%- routeName %>/delete",{id: item.id}, function (data) {
+                            if (data.status == 0) {
+                                toastr.error(data.message, data.title);
+                            } else {
+                                $("#jsGrid").jsGrid("loadData");
+                                toastr.success(data.message, data.title);
+                            }
+                        });
+                    }
+                    e.stopPropagation();
+                });
+                var div = $("<div>");
+
+                <% if(levels.view){ %>div.append($customViewButton).append("   ");<% } %>
+                <% if(levels.update){ %>div.append($customEditButton).append("   ");<% } %>
+                <% if(levels.delete) { %>div.append($customDeleteButton).append("   ");<% } %>
+                return div;
+            }
+        }
+    };
+    function fixGrid() {
+        var arr = [];
+        var visibles = <%- JSON.stringify(visibles) %>;
+        for (var i = 0; i < visibles.length; i++) {
+            if(gridFields.hasOwnProperty(visibles[i])){
+                arr.push(gridFields[visibles[i]]);
+            }
+        }
+        return arr;
+    }
+    function saveGrid(filter,url){
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:filter
+        })
+    }
+    var jsFilter = "";
+    $("#jsGrid").jsGrid({
+        width: "100%",
+        filtering: true,
+        inserting: false,
+        editing: false,
+        sorting: true,
+        autoload: true,
+        paging: true,
+        pageLoading: true,
+        css: "kv-grid-table table table-bordered table-striped kv-table-wrap",
+        pageIndex : parseInt(gridSettings.pageIndex) || 1,
+        pageSize: $("#pageSize").val(),
+        pageButtonCount: 15,
+        deleteConfirm: "<%- LANGUAGE['delete_confirm']%>",
+        controller: {
+            loadData: function (filter) {
+                var d = $.Deferred();
+                if(!isSave){
+                    if(gridSettings.hasOwnProperty("pageIndex")){
+                        filter = gridSettings;
+                    }
+                }
+                return $.ajax({
+                    datatype: "json",
+                    type: "GET",
+                    url: "/<%- routeName %>/list",
+                    data: filter,
+                    success: function (html) {
+                        var pi = filter.pageIndex;
+                        var ps = filter.pageSize;
+                        var showing = "Showing <b>";
+                        var pis = (pi * ps);
+                        var i = ((pi - 1) * ps) + 1;
+                        if (pis > html.itemsCount) pis = html.itemsCount;
+                        showing += i + " - " + pis;
+                        showing += "</b> of " + html.itemsCount;
+                        $(".summary").html(showing);
+                        $(".jsgrid-pager-container").addClass("paginaton");
+                        jsFilter = filter;
+                        if(isSave){
+                            saveGrid(filter,"/<%- routeName %>/save");
+                        }
+                    }
+                }).done(function (result) {
+                    d.resolve($.map(result.data, function (item, itemIndex) {
+                        var factor = filter.pageSize * (filter.pageIndex - 1);
+                        return $.extend(item, {"no": (itemIndex + 1) + factor});
+                    }));
+                });
+            },
+            updateItem: function(item) {
+                item.table = "<%- routeName %>";
+                item.model = "updateGrid";
+                return ajaxPost("/ajax",item,function (data) {
+                    $("#jsGrid").jsGrid("loadData");
+                });
+            }
+        },
+        fields: fixGrid(),
+    });
+    $("#create_btn").on("click", function () {
+        location.href = "/<%- routeName %>/create";
+    });
+    $("#importExcel").on("click", function () {
+        location.href = "/<%- routeName %>/import";
+    });
+    $("#super_btn").on("click", function () {
+        location.href = "/create_fields/<%- routeName %>";
+    });
+    $(".export-xls").on("click", function () {
+        location.href = "/<%- routeName %>/excel?" + jQuery.param(jsFilter);
+    });
+    $("#backupExcel").on("click", function () {
+        location.href = "/<%- routeName %>/excel-query?" + jQuery.param(jsFilter);
+    });
+    $("#pageSize").on("change", function () {
+        $("#jsGrid").jsGrid("option", "pageSize", $(this).val());
+        // sorting grid by myField in ascending order
+        if(jsFilter.hasOwnProperty("sortField")){
+            $("#jsGrid").jsGrid("sort", jsFilter.sortField, jsFilter.sortOrder).done(function() {
+                console.log("sorting completed");
+            });
+        }
+    });
+
+    $(".pageSizeGrid").on("click", function () {
+        $("#jsGrid").jsGrid("option", "pageSize", $(this).data("value"));
+        $(".pageSizeGrid").removeClass("active");
+        $(this).addClass("active");
+        $("#dropdownPagination").html("Pagination "+ $(this).data("value"));
+        // sorting grid by myField in ascending order
+        if(jsFilter.hasOwnProperty("sortField")){
+            $("#jsGrid").jsGrid("sort", jsFilter.sortField, jsFilter.sortOrder).done(function() {
+                console.log("sorting completed");
+            });
+        }
+    });
+
+    var group = $("ul.gridsortable").sortable({
+        group: 'gridsortable',
+        isValidTarget: function ($item, container) {
+            if ($item.is(".disabled"))
+                return false;
+            else
+                return true;
+        },
+        onDrop: function ($item, container, _super) {
+            var getidname = $item.parents().attr('id');
+            if (getidname == "gridleft") {
+                $item.find('span').addClass('fa-eye').removeClass('fa-eye-slash')
+            } else {
+                $item.find('span').addClass('fa-eye-slash').removeClass('fa-eye')
+            }
+            _super($item, container);
+        }
+    });
+    $(".grid-submit").on("click", function () {
+        var leftvalue = [];
+        $("#gridleft li").each(function (i) {
+
+            var dataname = $(this).attr('data-name');
+            if (dataname != '') {
+                leftvalue.push(dataname);
+            }
+        });
+        $('#serialize_left').val(JSON.stringify(leftvalue));
+
+        var rightvalue = [];
+
+        $("#gridright li").each(function (i) {
+            var dataname = $(this).attr('data-name');
+            if (dataname != '') {
+                rightvalue.push(dataname);
+            }
+        });
+        $('#serialize_right').val(JSON.stringify(rightvalue));
+        $("#form-grid").submit();
+    });
+    $(".grid-reset").on("click", function(){
+        ajaxDelete("/<%- routeName %>/grid",{},function (data) {
+            if (data.status == 0) {
+                toastr.error(data.message, data.title);
+            } else {
+                $("#jsGrid").jsGrid("loadData");
+                toastr.success(data.message, data.title);
+            }
+            location.href = '';
+        });
+    });
+    $(".label-reset").on("click", function(){
+        ajaxDelete("/<%- routeName %>/labels",{},function (data) {
+            if (data.status == 0) {
+                toastr.error(data.message, data.title);
+            } else {
+                $("#jsGrid").jsGrid("loadData");
+                toastr.success(data.message, data.title);
+            }
+            location.href = '';
+        });
+    });
+    $(".labels-submit").on("click", function () {
+        $("#form-labels").submit();
+    });
+    $("#reloadgrid").on("click", function (e) {
+        e.preventDefault();
+        ajaxPost("/<%- routeName%>/reload",{}, function (data) {
+            location.href="/<%- routeName%>";
+        });
+    });
+
+    submitForm('form-grid', '', '/<%- routeName %>');
+    submitForm('form-labels', '', '/<%- routeName %>');
+    $(function () {
+        if(gridSettings.hasOwnProperty("pageSize")){
+            $("#pageSize").val(gridSettings.pageSize)
+        }
+
+        var gridSearchs = <%- JSON.stringify(gridSearchs)%>;
+        var searchValue = $("table.jsgrid-table > tr").eq(1).find("td");
+        <%- gridSearchs%>
+
+        isSave = true;
+        $(".form-search").on("change", function () {
+            setTimeout(function () {
+                for(var key in jsFilter) {
+                    $("#"+key).val(jsFilter[key]);
+                }
+            },2000);
+        });
+
+        $(".form-advancesearch").on("change","input", function () {
+            advanceSearch();
+        });
+
+        $(".form-advancesearch").on("change","select", function () {
+            advanceSearch();
+        });
+    });
+
+    function advanceSearch() {
+        var arr = $(".form-advancesearch").serializeArray();
+        var o = {}
+        if(arr.length) {
+            $.each(arr, function() {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+        }
+        var obj = {}
+        if(jsFilter.hasOwnProperty("no")) obj.no = jsFilter.no;
+        if(jsFilter.hasOwnProperty("pageIndex")) obj.pageIndex = jsFilter.pageIndex;
+        if(jsFilter.hasOwnProperty("pageSize")) obj.pageSize = jsFilter.pageSize;
+
+        jsFilter = Object.assign(obj,o);
+        $("#jsGrid").jsGrid("search", jsFilter).done(function() {
+            console.log("filtering completed");
+        });
+    }
+</script>

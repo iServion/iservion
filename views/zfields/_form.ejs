@@ -1,0 +1,56 @@
+<form id="form-group" method="post" action="" class="boxy" enctype="multipart/form-data" [[[NO_VALI_DATE_NOVALIDATE]]]  >
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="page-header">
+
+    </div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<%- UI.Form.group("table", zForms.label["table"], zForms.fn("table",{tabindex:2})); %>
+			<%- UI.Form.group("route", zForms.label["route"], zForms.fn("route",{tabindex:2})); %>
+			<%- UI.Form.group("name", zForms.label["name"], zForms.fn("name",{tabindex:2})); %>
+		</div>
+		<div class="col-md-6">
+			<%- UI.Form.group("left", zForms.label["left"], zForms.fn("left",{tabindex:1})); %>
+			<%- UI.Form.group("right", zForms.label["right"], zForms.fn("right",{tabindex:1})); %>
+			<%- UI.Form.group("before_list", zForms.label["before_list"], zForms.fn("before_list",{tabindex:8})); %>
+			<%- UI.Form.group("zapprovals", zForms.label["zapprovals"], zForms.fn("zapprovals",{tabindex:8})); %>
+			<%- UI.Form.group("hardcode_grid", zForms.label["hardcode_grid"], zForms.fn("hardcode_grid",{tabindex:8})); %>
+			<%- UI.Form.group("javascript_form", zForms.label["javascript_form"], zForms.fn("javascript_form",{tabindex:8})); %>
+			<%- UI.Form.group("before_delete", zForms.label["before_delete"], zForms.fn("before_delete",{tabindex:8})); %>
+			<%- UI.Form.group("properties", zForms.label["properties"], zForms.fn("properties",{tabindex:1})); %>
+			<%- UI.Form.group("before_update", zForms.label["before_update"], zForms.fn("before_update",{tabindex:8})); %>
+			<%- UI.Form.group("before_create", zForms.label["before_create"], zForms.fn("before_create",{tabindex:8})); %>
+			<%- UI.Form.group("labels", zForms.label["labels"], zForms.fn("labels",{tabindex:1})); %>
+			<%- UI.Form.group("one_column", zForms.label["one_column"], zForms.fn("one_column",{tabindex:1})); %>
+			<%- UI.Form.group("sorting", zForms.label["sorting"], zForms.fn("sorting",{tabindex:1})); %>
+			<%- UI.Form.group("tabs", zForms.label["tabs"], zForms.fn("tabs",{tabindex:1})); %>
+			<%- UI.Form.group("details", zForms.label["details"], zForms.fn("details",{tabindex:1})); %>
+			<%- UI.Form.group("after_create", zForms.label["after_create"], zForms.fn("after_create",{tabindex:8})); %>
+			<%- UI.Form.group("after_update", zForms.label["after_update"], zForms.fn("after_update",{tabindex:8})); %>
+			<%- UI.Form.group("after_delete", zForms.label["after_delete"], zForms.fn("after_delete",{tabindex:8})); %>
+			<%- UI.Form.group("javascript_grid", zForms.label["javascript_grid"], zForms.fn("javascript_grid",{tabindex:8})); %>
+			<%- UI.Form.group("approval_content", zForms.label["approval_content"], zForms.fn("approval_content",{tabindex:8})); %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		</div>
+	</div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <%- UI.Form.submit() %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <p class="text-muted"><strong>*</strong> <%- LANGUAGE['required_not_empty'] %></p>
+        </div>
+    </div>
+
+</form>

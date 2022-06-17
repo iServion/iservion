@@ -1,0 +1,240 @@
+<div class="">
+    <nav class="breadcrumb pull-right boxy-small">
+        <a class="breadcrumb-item" href="/dashboard"><%- LANGUAGE['home'] %></a> /
+        <span class="breadcrumb-item active"><%- LANGUAGE['grid_list'] %></span>
+    </nav>
+
+    <div class="page-header">
+        <h2><%- titleApp %></h2>
+        <small><%- companyName %></small>
+    </div>
+
+    <div class="panel panel-info boxy">
+        <div class="panel-heading">
+            <div class="pull-right">
+                <div class="summary"></div>
+            </div>
+            <h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> <%- menuApp %> <%- LANGUAGE['grid_list'] %>
+            </h3>
+            <div class="clearfix"></div>
+        </div>
+        <div class="kv-panel-before">
+            <div class="pull-right">
+                <div class="btn-toolbar kv-grid-toolbar" role="toolbar">
+                    <div class="btn-group">
+                        <% if(levels.create){ %>
+                        <a type="button" id="create_btn" class="btn btn-success" href="/<%- routeName %>/create"
+                           title="<%- LANGUAGE['data_add'] %>"><i class="fa fa-plus white-icon"></i></a>
+                        <% } %>
+
+                        <% if(levels.export){ %>
+                        <button type="button" id="backupExcel" class="btn btn-info"
+                                title="<%- LANGUAGE['download_excel'] %>"><i
+                                    class="fa fa-file-excel-o"></i></button>
+                        <% } %>
+
+                        <% if(levels.import){ %>
+                        <a type="button" id="importExcel" href="/<%- routeName %>/import" class="btn btn-warning"
+                           title="<%- LANGUAGE['data_import'] %>"><i class="fa fa-external-link"></i></a>
+                        <% } %>
+
+                        <button type="button" class="btn btn-default"
+                                title="<%- LANGUAGE['grid_personalize_labeling'] %>" data-toggle="modal"
+                                data-target="#grid-labels">
+                            <i class="fa fa-font"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-default"
+                                title="<%- LANGUAGE['grid_personalize_setting'] %>" data-toggle="modal"
+                                data-target="#grid-modal">
+                            <i class="fa fa-cog"></i>
+                        </button>
+
+                        <a id="reloadgrid" class="btn btn-default" title="<%- LANGUAGE['grid_refresh'] %>"><i
+                                    class="fa fa-refresh"></i></a>
+
+                        <% if(levels.super){ %>
+                        <a type="button" id="create_btn" class="btn btn-danger" href="/create_fields/<%- routeName %>"
+                           title="super fields"><i class="fa fa-check white-icon"></i></a>
+                        <% } %>
+
+                    </div>
+                    <div class="btn-group">
+                        <select id="pageSize" class="form-control">
+                            <% for(var i = 0; i < paginationApp.length; i++) { %>
+                            <option value="<%- paginationApp[i] %>" <%- Object.prototype.hasOwnProperty.call(gridFilters, "pageSize") ? gridFilters.pageSize == paginationApp[i] ? " selected " : "" : "" %>><%- paginationApp[i] %></option>
+                            <% } %>
+                        </select>
+                    </div>
+
+                    <% if(levels.export){ %>
+                    <div class="btn-group">
+                        <button id="w9" class="btn btn-default dropdown-toggle" title="Export" data-toggle="dropdown"
+                                aria-expanded="false"><i class="glyphicon glyphicon-export"></i>
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="exportscolumn" class="dropdown-menu dropdown-menu-right">
+                            <li role="presentation" class="dropdown-header"><%- LANGUAGE['grid_export_data'] %></li>
+                            <li title="Microsoft Excel All"><a class="export-xls" href="#"><i
+                                            class="text-success fa fa-file-excel-o"></i> Excel</a></li>
+                            <li title="Portable Document Format"><a class="export-pdf" href="#"><i
+                                            class="text-danger fa fa-file-pdf-o"></i> PDF</a></li>
+                        </ul>
+                    </div>
+                    <% } %>
+
+                </div>
+            </div>
+            <div style="padding-top: 7px;"><em><%- LANGUAGE['grid_personal'] %></em></div>
+            <div class="clearfix"></div>
+        </div>
+        <div id="jsGrid" class="table-responsive kv-grid-container"></div>
+    </div>
+
+</div>
+<div class="modal fade" id="grid-modal" tabindex="-1" role="dialog" aria-labelledby="gridLabel" aria-hidden="true">
+    aria-hidden="true" aria-labelledby="dynagrid-1-grid-modal-label">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="dynagrid-1-grid-modal-label" class="modal-title">
+                    <i class="fa fa-cog"></i> Settings Grid Configuration
+                </h5>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="dynagrid-config-form">
+                    <form id="form-grid" class="form-vertical kv-form-bs4" action="/<%- routeName %>/grid"
+                          method="post">
+                        <input type="hidden" name="_csrf" value="">
+                        <div class="dynagrid-column-label">
+                            Configure Order and Display of Grid Columns
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <ul id="gridleft"
+                                    class="sortable-visible sortable list kv-connected cursor-move gridsortable"
+                                    aria-dropeffect="move">
+                                    <li data-name="" class="alert alert-info dynagrid-sortable-header disabled">
+                                        Visible Columns
+                                    </li>
+                                    <% for(var i = 0; i < visibles.length;i++){ %>
+                                    <li data-name="<%- visibles[i] %>" draggable="true" role="option"
+                                        aria-grabbed="false">
+                                        <span class="fa fa-eye"></span>
+                                        <%
+                                            titlerow = visibles[i];
+                                            titleGrid = attributeData.labels[visibles[i]];
+                                        %>
+                                        <%- titleGrid %>
+                                    </li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <div class="dynagrid-sortable-separator"><i class="fas fa-arrows-alt-h"></i></div>
+                            </div>
+                            <div class="col-sm-5">
+                                <ul id="gridright"
+                                    class="sortable-hidden sortable list kv-connected cursor-move gridsortable"
+                                    aria-dropeffect="move">
+                                    <li data-name="" class="alert alert-info dynagrid-sortable-header disabled">Hidden /
+                                        Fixed Columns
+                                    </li>
+                                    <% for(var i = 0; i < invisibles.length;i++){
+                                    %>
+                                    <li data-name="<%- invisibles[i] %>" draggable="true" role="option"
+                                        aria-grabbed="false">
+                                        <span class="fa fa-eye-slash"></span>
+                                        <%
+                                            titlerow = invisibles[i];
+                                            titleGrid = attributeData.labels[invisibles[i]];
+                                        %>
+                                        <%- titleGrid %>
+                                    </li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="hidden" id="serialize_left" name="serialize_left" value=''/>
+                        <input type="hidden" id="serialize_right" name="serialize_right" value=''/>
+                    </form>
+                </div> <!-- .dynagrid-config-form -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-default grid-reset" title="Abort any changes and reset settings">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <button type="button" class="btn btn-primary grid-submit" title="Save grid settings">
+                    <i class="fa fa-paper-plane"></i> Apply
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="grid-labels" tabindex="-1" role="dialog" aria-labelledby="gridLabels" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="dynagrid-1-grid-modal-label" class="modal-title">
+                    <i class="fa fa-font fa-fw"></i> Labels Configuration
+                </h5>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="dynagrid-config-form">
+                    <form id="form-labels" class="form-vertical" action="/<%- routeName %>/labels" method="post">
+                        <input type="hidden" name="_csrf" value="==">
+
+                        <div class="dynagrid-column-label">
+                            Configure Field Labeling
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-condensed table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Fields</th>
+                                        <th>Default</th>
+                                        <th>Custom</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% var i = 1; for(var keys in attributeData.labels){ %>
+                                    <tr>
+                                        <td><%- i %></td>
+                                        <td><%- keys %></td>
+                                        <td><%- attributeData.originalLabels[keys] %></td>
+                                        <td><input maxlength="25" type="text" class="form-control" required
+                                                   name="<%- routeName %>[<%- keys %>]"
+                                                   value="<%- attributeData.labels[keys] %>"></td>
+                                    </tr>
+                                    <% i++;} %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </form>
+                </div> <!-- .dynagrid-config-form -->
+            </div>
+
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-default label-reset" title="Abort any changes and reset settings">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <button type="button" class="btn btn-primary labels-submit" title="Save grid settings">
+                    <i class="fa fa-paper-plane"></i> Submit
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<%- UI.Form.breadcrumb(frameworkcss, [{text: LANGUAGE['home'], href:"/dashboard"}, {text: LANGUAGE['grid_list'], href:"/"+routeName}, {text: LANGUAGE['form_import'], active: true}]) %>
+
+<div class="page-header">
+    <h3><%- LANGUAGE['form_import_title']%></h3>
+</div>
+
+
+<p> </p>
+<form id="form-import" method="post" enctype="multipart/form-data" class="boxy">
+    <input type="hidden" name="_csrf" value="">
+    <div class="row">
+        <div class="col-md-10">
+            <p> </p>
+
+            <div class="form-group mb-3">
+                <label class="control-label col-md-4" for="file"><%- LANGUAGE['form_label_excel_file']%></label>
+                <div class="col-md-10">
+                    <input type="file" id="file" name="excel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <button type="submit" class="btn btn-success"><%- LANGUAGE['upload']%></button>
+            <p> </p>
+            <p> </p></div>
+    </div>
+
+
+    <div class="container">
+        <h3><%- LANGUAGE['import_results']%>:</h3>
+        <div class="results"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped" id="resultsforimport">
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<hr>
+<div class="row">
+    <div class="col-md-10"> <%- LANGUAGE['import_example']%> : <a id="sample-parsing" href="/<%- routeName%>/sample">sample.xlsx</a></div>
+</div>

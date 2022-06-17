@@ -1,0 +1,10 @@
+<script>
+    $(".btn-create").on("click", function () {
+        ajaxPost("/zapi/new",{}, function (data) {
+            toastrForm(data);
+            if(data.status ==1) {
+                location.href = '';
+            }
+        });
+    });
+</script>

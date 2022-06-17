@@ -1,0 +1,1497 @@
+
+<li class="dropdown">
+    <a href="#" class="fa fa-home" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> <%- LANGUAGE['module_program'] %><span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="/dashboard"> <%- LANGUAGE['menu_home'] %></a></li>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="#"> <%- LANGUAGE['menu_language'] %><span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/lang/lang_en"> <%- LANGUAGE['submenu_english'] %></a></li>
+                <li><a href="/lang/lang_id"> <%- LANGUAGE['submenu_indonesian'] %></a></li>
+                <li><a href="/lang/lang_jp"> <%- LANGUAGE['submenu_japan'] %></a></li>
+                <li><a href="/lang/lang_fr"> <%- LANGUAGE['submenu_france'] %></a></li>
+            </ul>
+        </li>
+
+        <% if(menuAccess('uat', cLevels)) { %>
+        <li><a href="/uat"> UAT</a></li>
+        <%}%>
+
+        <li><a href="/"> <%- LANGUAGE['menu_logout'] %></a></li>
+    </ul>
+</li>
+<% if(menuAccess(
+                [
+                    'company', 'management', 'division', 'department', 'section',
+                    'subsection', 'position', 'functional', 'branch',
+                    'cost_center', 'employee_status',
+
+                    'nasionality', 'province', 'city', 'district',
+                    'village', 'education', 'major', 'married', 'tax_category',
+                    'religion', 'bank', 'currency', 'size',
+
+                    'absence_type', 'resign_type', 'schedule_type',
+                    'shift_type', 'loan_type', 'payroll_category', 'payroll_module', 'payroll_type',
+                    'hold_type', 'project_type', 'absence_category', 'exit_clearance_type', 'tax_family',
+
+                    'policy', 'template_form',
+                    'News',
+                    'Handbook',
+                    'Approval'
+
+
+                ], cLevels)) { %>
+
+<li class="dropdown">
+    <a href="#" class="fa fa-fw fa-database" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> <%- LANGUAGE['module_master'] %><span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li>
+            <a href="/dashboard_master"> Master Dashboard</a>
+        </li>
+
+        <% if(menuAccess(
+                        ['absence_type', 'resign_type', 'schedule_type', 'payroll_module',
+                            'shift_type', 'loan_type', 'payroll_type', 'recruitment_process_type',
+                            'hold_type', 'project_type', 'exit_clearance_type', 'media', 'tax_family'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Configuration">Configuration<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('recruitment_process_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/recruitment_process_type">Recruitment Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('absence_category', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/absence_category">Absence Category</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('absence_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/absence_type">Absence Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('schedule_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/schedule_type">Schedule Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('schedule', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/schedule">Schedule</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('shift_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/shift_type">Shift Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('resign_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/resign_type">Resign Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('exit_clearance_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/exit_clearance_type">Exit Clearance Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('tasks_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/tasks_type">Tasks Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('loan_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/loan_type">Loan Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('payroll_category', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/payroll_category">Payroll Category</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('tax_category', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/tax_category">Payroll Tax Category</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('tax_family', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/tax_family">Tax Family Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('payroll_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/payroll_type">Payroll Types</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('payroll_module', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/payroll_module">Payroll Formula</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('hold_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/hold_type">Hold Type</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('project_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/project_type">Project Type</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['nasionality', 'province', 'city', 'district',
+                            'village', 'education', 'major', 'married',
+                            'religion', 'bank', 'currency', 'media', 'size'
+                        ], cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="/general_data">General Data<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('nasionality', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/nasionality">Nasionality</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('province', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="province">Province</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('city', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/city">City</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('district', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/district">District</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('village', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/village">Village</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('education', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/education">Education</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('major', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/major">Major</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('married', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/married">Married</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('religion', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/religion">Religion</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('bank', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/bank">Bank</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('currency', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/currency">Currency</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('media', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/media">Media</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('media', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/size">Size</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        [
+                            'company', 'management', 'division', 'department', 'section',
+                            'subsection', 'position', 'functional', 'grade', 'branch', 'employee_status',
+                            'cost_center'
+
+                        ], cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Organisation"> <%- LANGUAGE['menu_organisation'] %><span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('company', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/company"> <%- LANGUAGE['submenu_company'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('management', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/management"> <%- LANGUAGE['submenu_management'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('division', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/division"> <%- LANGUAGE['submenu_division'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('department', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/department"> <%- LANGUAGE['submenu_department'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('section', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/section"> <%- LANGUAGE['submenu_section'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('subsection', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/subsection"> <%- LANGUAGE['submenu_subsection'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('position', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/position"> <%- LANGUAGE['submenu_position'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('functional', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/functional"> <%- LANGUAGE['submenu_functional'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('grade', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/grade"> <%- LANGUAGE['submenu_grade'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('branch', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/branch"> <%- LANGUAGE['submenu_branch'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('cost_center', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/cost_center"> <%- LANGUAGE['submenu_cost_center'] %></a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('employee_status', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/employee_status">Employee Status</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['policy'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="/Policy">Policy<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess('policy', cLevels)) { %>
+                <li><a href="policy">Policy</a></li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['news'
+                        ], cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="/News">News<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess('news', cLevels)) { %>
+                <li><a href="/news">News</a></li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['template_form'
+                        ], cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="template_form">Template Form<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess('template_form', cLevels)) { %>
+                <li><a href="/template_form">Template Form</a></li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['handbook'
+                        ], cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="/Handbook">Handbooks<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess('handbook', cLevels)) { %>
+                <li><a href="/handbook">Handbooks</a></li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['approval'
+                        ], cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="/Approval">Approval<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('approval', cLevels)) { %>
+                <li><a href="/approval">Approval</a></li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+    </ul>
+</li>
+<% } %>
+
+<% if(menuAccess(
+                [
+                    'mrf', 'job_advertisement', 'candidate', 'recruitment_process', 'fkr',
+
+                    'employee', 'employee_organisation', 'employee_warning',
+
+                    'calender', 'tasks', 'schedule', 'shift', 'finger_system', 'attendance', 'absence',
+                    'leave,resign', 'finger_machine', 'official_travel', 'overtime',
+
+                    'exit_clearance', 'resign'
+
+                ], cLevels)) { %>
+<li class="dropdown">
+    <a href="#" class="fa fa-user-circle-o" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> Manpower <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+            <a href="/dashboard_manpower">Manpower Dashboard</a>
+        </li>
+
+        <% if(menuAccess(
+                        ['mrf', 'job_advertisment', 'candidate', 'recruitment_process', 'fkr'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="/Recruitment">Recruitment<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('mrf', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/mrf">Request Employee</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('job_advertisement', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/job_advertisement">Job Advertisement</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('candidate', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/candidate">Candidate</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('recruitment_process', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/recruitment_process">Recruitment Process</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('fkr', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/fkr">Recruitment Remuneration</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['employee', 'employee_organisation', 'payroll_entry', 'employee_warning'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="/employee">Employee<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('employee', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/employee">Employee List</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('employee_organisation', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/employee_organisation">Endorsment </a>
+                </li>
+                <% } %>
+                <% if(menuAccess('employee_warning', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/employee_warning">Employee Warning</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['calender', 'attendance', 'absence', 'tasks',
+                            'leave', 'schedule', 'shift', 'finger_system',
+                            'leave', 'finger_machine', 'official_travel', 'overtime',
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Activity">Activity<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('calender', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/calender">Calender</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('leave', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/leave">Leave</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('tasks', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/tasks">Tasks</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('shift', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/shift">Shift</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('finger_machine', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/finger_machine">Finger Machine</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('finger_system', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/finger_system/create">Finger System</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('attendance', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/attendance">Attendance</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('absence', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/absence">Absence</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('overtime', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/overtime">Overtime</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('official_travel', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/official_travel">Official Travel</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['exit_clearance', 'resign'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Resign">Resign<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('resign', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/resign">Resign</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('exit_clearance', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/exit_clearance">Exit Clearance</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+    </ul>
+</li>
+<% } %>
+
+<% if(menuAccess(
+                [
+                    'dashboard_payroll', 'payroll_periode', 'Additional Allowance',
+                    'loan', 'Additional Benefit', 'Payroll', 'Slip', 'Hold',
+                    'bonus',
+                    'severance', 'married_claim', 'birth', 'dead',
+                    'payroll_calculation', 'payroll_report',
+                    'salary_slip_release',
+                    'hold'
+
+                ], cLevels)) { %>
+
+<li class="dropdown">
+    <a href="#" class="fa fa-paypal" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> Payroll <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+            <a href="/dashboard_payroll">Payroll Dashboard</a>
+        </li>
+
+        <% if(menuAccess(
+                        ['bonus'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Additional Allowance">Additional Allowance<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('bonus', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/bonus">Bonus</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['loan'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="loan">Loan<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('loan', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/loan">Loan</a>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['severance', 'married_claim', 'birth', 'dead'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Additional Benefit">Additional Benefit<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('severance', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/severance">Severance</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('married_claim', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/married_claim">Married</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('birth', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/birth">Birth</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('dead', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/dead">dead</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['payroll_category', 'tax_category', 'payroll_calculation', 'payroll_report', 'payroll_periode', 'salary'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Payroll">Payroll<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('payroll_periode', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/payroll_periode">Payroll Period</a>
+                </li>
+                <% } %>
+                <li class="dropdown-submenu">
+                    <a href="/salary_copy">Payroll Salary Copy</a>
+                </li>
+                <% if(menuAccess('salary', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/salary">Payroll Salary Setting</a>
+                </li>
+                <% } %>
+
+                <li class="dropdown-submenu">
+                    <a href="/salary_lock"> Payroll Salary Lock / Unlock</a>
+                </li>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['salary_slip_release', 'salary_slip'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Slip">Salary Slip<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('salary_slip_release', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/salary_slip_release">Release Salary Slip</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['hold'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Hold">Hold<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('hold', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/hold">Hold</a>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+    </ul>
+</li>
+<% } %>
+
+<% if(menuAccess(
+                [
+                    'building_type', 'building', 'building_use', 'building_condition', 'building_report',
+                    'vehicle_type', 'vehicle', 'vehicle_bpkb', 'vehicle_stnk', 'vehicle_use', 'vehicle_condition', 'vehicle_report',
+                    'tools_type', 'tools', 'tools_use', 'tools_condition', 'tools_report',
+                    'machine_type', 'machine', 'machine_use', 'machine_condition', 'machine_report',
+
+                    'material_production_type', 'material_production', 'material_production_use',
+                    'material_production_condition', 'material_production_report',
+                    'material_maintenance_type', 'material_maintenance', 'material_maintenance_use',
+                    'material_maintenance_use', 'material_maintenance_condition', 'material_maintenance_report',
+                    'material_administration_type', 'material_administration', 'material_administration_use',
+                    'material_administration_condition', 'material_administration_report', 'material_administration_report'
+
+                ], cLevels)) { %>
+
+<li class="dropdown">
+    <a href="#" class="fa fa-building" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> Asset<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+            <a href="/dashboard_asset">Asset Dashboard</a>
+        </li>
+
+        <% if(menuAccess(
+                        ['Asset Building',
+                            'building_type', 'building', 'building_use', 'building_condition', 'building_report',
+                            'vehicle_type', 'vehicle', 'vehicle_bpkb', 'vehicle_stnk', 'vehicle_use', 'vehicle_condition', 'vehicle_report',
+                            'tools_type', 'tools', 'tools_use', 'tools_condition', 'tools_report',
+                            'machine_type', 'machine', 'machine_use', 'machine_condition', 'machine_report',
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Asset Inventaris">Asset Inventaris<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess(
+                                ['building_type', 'building', 'building_use', 'building_condition', 'building_report'
+                                ], cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a class="test" href="Asset Building">Asset Building<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('building_type', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/building_type">Building Type</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('building', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/building">Building Data</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('building_use', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/building_use">Building Use / Rental </a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('building_condition', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/building_condition">Building Condition</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('building_report', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/building_report">Building Report</a>
+                        </li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(menuAccess(
+                                ['electronic_type', 'electronice', 'electronic_use', 'electronic_condition', 'electronic_report'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="Asset Electronic">Asset Electronic<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('electronic_type', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/electronic_type">Electronic Type</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('electronice', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/electronic">Electronic Data</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('electronic_use', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/electronic_use">Electronic Use / Rental </a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('electronic_condition', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/electronic_condition">Electronic Condition</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('electronic_report', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/electronic_report">Electronic Report</a>
+                        </li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(menuAccess(
+                                ['vehicle_type', 'vehicle', 'vehicle_bpkb', 'vehicle_stnk',
+                                    'vehicle_use', 'vehicle_condition', 'vehicle_report'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="Asset Vehicle">Asset Vehicle<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('vehicle_type', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/vehicle_type">Vehicle Type</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('vehicle', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/vehicle">Vehicle Data</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('vehicle_bpkb', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/vehicle_bpkb">Vehicle BPKB</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('vehicle_stnk', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/vehicle_stnk">Vehicle STNK</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('vehicle_use', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/vehicle_use">Vehicle Use / Rental </a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('vehicle_condition', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/vehicle_condition">Vehicle Condition</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('vehicle_report', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/vehicle_report">Vehicle Report</a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(menuAccess(
+                                ['tools_type', 'tools', 'tools_use', 'tools_condition', 'tools_report'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="Asset Tools">Asset Tools<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('tools_type', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/tools_type">Tools Type</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('tools', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/tools">Tools Data</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('tools_use', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/tools_use">Tools Use / Rental </a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('tools_condition', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/tools_condition">Tools Condition</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('tools_report', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/tools_report">Tools Report</a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(menuAccess(
+                                ['machine_type', 'machine', 'machine_use', 'machine_condition', 'machine_report'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="Asset Machine">Asset Machine<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('machine_type', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/machine_type">Machine Type</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('machine', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/machine">Machine Data</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('machine_use', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/machine_use">Machine Use / Rental </a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('machine_condition', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/machine_condition">Machine Condition</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('machine_report', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/machine_report">Machine Report</a>
+                        </li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        [
+                            'material_production_type', 'material_production', 'material_production_use',
+                            'material_production_condition', 'material_production_report',
+                            'material_maintenance_type', 'material_maintenance', 'material_maintenance_use',
+                            'material_maintenance_use', 'material_maintenance_condition', 'material_maintenance_report',
+                            'material_administration_type', 'material_administration', 'material_administration_use',
+                            'material_administration_condition', 'material_administration_report', 'material_administration_report'
+
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Asset Material">Asset Material<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess(
+                                ['material_production_type', 'material_production', 'material_production_use',
+                                    'material_production_condition', 'material_production_report',
+
+                                ], cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a class="test" href="Asset Material Production">Asset Material Production<span
+                                class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('material_production_type', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_production_type">Material Production Type</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_production', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_production">Material Production Data</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_production_use', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_production_use">Material Production Use / Rental </a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_production_condition', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_production_condition">Material Production Condition</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_production_report', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_production_report">Material Production Report</a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(menuAccess(
+                                ['material_maintenance_type', 'material_maintenance', 'material_maintenance_use',
+                                    'material_maintenance_use', 'material_maintenance_condition', 'material_maintenance_report'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="Asset Material Maintenance">Asset Material Maintenance<span
+                                class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('material_maintenance_type', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_maintenance_type">Material Maintenance Type</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_maintenance', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_maintenance">Material Maintenance Data</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_maintenance_use', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_maintenance_use">Material Maintenance Use / Rental </a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_maintenance_condition', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_maintenance_condition">Material Maintenance Condition</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_maintenance_report', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_maintenance_report">Material Maintenance Report</a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(menuAccess(
+                                ['material_administration_type', 'material_administration', 'material_administration_use',
+                                    'material_administration_condition', 'material_administration_report', 'material_administration_report'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="Asset Material Administration">Asset Material
+                        Administration<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('material_administration_type', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_administration_type">Material Administration Type</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_administration', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_administration">Material Administration Data</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_administration_use', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_administration_use">Material Administration Use /
+                                Rental </a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_administration_condition', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_administration_condition">Material Administration
+                                Condition</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('material_administration_report', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/material_administration_report">Material Administration Report</a>
+                        </li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+    </ul>
+</li>
+<% } %>
+
+<% if(menuAccess(
+                [
+                    'Purchasing', 'Suplay Chain Management',
+                    'purchasing',
+                    'scm',
+
+
+                ], cLevels)) { %>
+<li class="dropdown">
+    <a href="#" class="fa fa-send" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> Purch & SCM<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+            <a href="/dashboard_purchscm">Purchasing & SCM Dashboard</a>
+        </li>
+        <% if(menuAccess(
+                        ['Purchasing', 'Suplay Chain Management'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Purchasing">Purchasing<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess(
+                                ['purchasing'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="Purchasing">Purchasing<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('purchasing', cLevels)) { %>
+                        <li><a href="purchasing">Purchasing </a></li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(
+                        ['Suplay Chain Management'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Suplay Chain Management">Suplay Chain Management<span
+                        class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess(
+                                ['scm'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="Suplay Chain Management">Suplay Chain Management<span
+                                class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('purchasing', cLevels)) { %>
+                        <li><a href="scm">Suplay Chain Management</a></li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+    </ul>
+</li>
+<% } %>
+
+<% if(menuAccess(
+                [
+                    'budget', 'account_payable', 'account_receivable', 'accounting',
+                    'cash_advance_settlement', 'cash_advance', 'invoice', 'receivable'
+
+                ], cLevels)) { %>
+<li class="dropdown">
+    <a href="#" class="fa fa-money" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> FA<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+            <a href="/dashboard_fa">FA Dashboard</a>
+        </li>
+
+        <% if(menuAccess(
+                        ['account_category', 'account_type', 'journal_type'
+                        ], cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Accounting">Accounting<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% if(menuAccess('account_category', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/account_category">Account Category</a>
+                </li>
+                <% } %>
+                <% if(menuAccess('account_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/account_type">Account Type</a>
+                </li>
+                <% } %>
+                <% if(menuAccess('journal_type', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/journal_type">Journal Type</a>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+        <% if(menuAccess(
+                        ['budget', 'account_payable', 'account_receivable', 'accounting', 'invoice', 'receivable'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Finance">Finance<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('budget', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/budget">Budget</a>
+                </li>
+                <% } %>
+                <% if(menuAccess(
+                                ['cash_advance', 'cash_advance_settlement'
+                                ], cLevels)) { %>
+
+                <li class="dropdown-submenu">
+                    <a class="test" href="account_payable">Account Payable <span
+                                class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('cash_advance', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/cash_advance">Cash Advance</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('cash_advance_settlement', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/cash_advance_settlement">Settlement</a>
+                        </li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+
+                <% if(menuAccess(
+                                ['invoice', 'receivable'
+                                ], cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a class="test" href="account_receivable">Account Receivable <span
+                                class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('invoice', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/invoice">Invoice</a>
+                        </li>
+                        <% } %>
+
+                        <% if(menuAccess('receivable', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="/receivable">Receivable</a>
+                        </li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+    </ul>
+</li>
+<% } %>
+
+<% if(menuAccess(
+                ['Legal', 'legal'
+                ], cLevels)) { %>
+<li class="dropdown">
+    <a href="#" class="fa fa-handshake-o" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> Legal<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+            <a href="/dashboard_legal">Legal Dashboard</a>
+        </li>
+
+        <% if(menuAccess(
+                        ['Legal'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Legal">Legal<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess(
+                                ['legal'
+                                ], cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a class="test" href="Legal">Legal<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <% if(menuAccess('legal', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="legal">Legal</a>
+                        </li>
+                        <% } %>
+
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+    </ul>
+</li>
+<% } %>
+
+<% if(menuAccess(
+                ['Busines', 'project', 'business'
+                ], cLevels)) { %>
+<li class="dropdown">
+    <a href="#" class="fa fa-tasks" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> Business<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+
+        <li class="dropdown-submenu">
+            <a href="/dashboard_business">Business Dashboard</a>
+        </li>
+
+        <% if(menuAccess('project', cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a href="/project">Project</a>
+        </li>
+        <% } %>
+
+        <% if(menuAccess(['Busines'], cLevels)) { %>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Business">Business<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess(
+                                ['business'
+                                ], cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a class="test" href="Business">Business<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <% if(menuAccess('business', cLevels)) { %>
+                        <li class="dropdown-submenu">
+                            <a href="business">Business </a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+        </li>
+        <% } %>
+
+    </ul>
+</li>
+<% } %>
+
+<% if(menuAccess(
+                [
+                    'report', 'salary_slip'
+
+                ], cLevels)) { %>
+
+<li class="dropdown">
+    <a href="#" class="fa fa-paypal" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> Report <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+            <a href="/dashboard">Report Dashboard</a>
+        </li>
+
+        <% if(menuAccess(
+                        ['report', 'salary_slip'
+                        ], cLevels)) { %>
+
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="Report">Payroll<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+                <% if(menuAccess('payroll_report', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/report">Payroll Report</a>
+                </li>
+                <% } %>
+
+                <% if(menuAccess('salary_slip', cLevels)) { %>
+                <li class="dropdown-submenu">
+                    <a href="/salary_slip">Salary Slip</a>
+                </li>
+                <% } %>
+
+            </ul>
+        </li>
+        <% } %>
+    </ul>
+</li>
+<% } %>

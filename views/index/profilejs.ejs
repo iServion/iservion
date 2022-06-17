@@ -1,0 +1,151 @@
+<script src="/js/utils.js"></script>
+<script src="/js/intlTelInput.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.js"></script>
+<script>
+    $("#password-submit").on("click", function () {
+        $(".help-block").remove();
+        $(".has-error").removeClass("");
+        ajaxPost('/password-change',{
+            passwordNow: $("#passwordNow").val(),
+            password: $("#password").val(),
+            passwordRepeat: $("#passwordRepeat").val()
+        }, function (data) {
+            if (data.status == 1) {
+                toastr.success(data.message, data.title);
+            } else {
+                toastr.error(data.message, data.title);
+            }
+            location.href = '';
+        });
+    });
+
+    $("#submit-profile").on("click",function () {
+        $(this).submit();
+    });
+
+    submitForm('form-profile', "", "", function (data) {
+        if (data.status == 1) {
+            $(".navbar-login").find("img").attr("src", data.image);
+        }
+    });
+
+
+    var image = document.getElementById('imagecrop');
+    var dataX = 128;
+    var dataY = 72;
+    var dataHeight = 200;
+    var dataWidth = 300;
+    var dataRotate = 0;
+    var dataScaleX = 1;
+    var dataScaleY = 1;
+
+    var options = {
+        aspectRatio: 16 / 9,
+        preview: '.img-preview',
+        ready: function (e) {
+            console.log(e.type);
+        },
+        cropstart: function (e) {
+            console.log(e.type, e.detail.action);
+        },
+        cropmove: function (e) {
+            console.log(e.type, e.detail.action);
+        },
+        cropend: function (e) {
+            console.log(e.type, e.detail.action);
+        },
+        crop: function (e) {
+            var data = e.detail;
+            console.log(e.type);
+            dataX.value = Math.round(data.x);
+            dataY.value = Math.round(data.y);
+            dataHeight.value = Math.round(data.height);
+            dataWidth.value = Math.round(data.width);
+            dataRotate.value = typeof data.rotate !== 'undefined' ? data.rotate : '';
+            dataScaleX.value = typeof data.scaleX !== 'undefined' ? data.scaleX : '';
+            dataScaleY.value = typeof data.scaleY !== 'undefined' ? data.scaleY : '';
+        },
+        zoom: function (e) {
+            console.log(e.type, e.detail.ratio);
+        }
+    };
+
+    /*
+     https://fengyuanchen.github.io/cropperjs/
+     */
+    var uploadedImageName = 'cropped.jpg';
+    var uploadedImageType = 'image/jpeg';
+    var cropper;
+    function readFile(input) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            image.src = e.target.result;
+            $(".upload-msg").hide();
+            $("#image-container").show();
+            cropper = new Cropper(image, options);
+
+            uploadedImageType = input.files[0].type;
+            uploadedImageName = input.files[0].name;
+            $("#crop").show();
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+
+    $(".upload-msg").on("click", function () {
+        $('#verify_signed').click();
+    })
+    $('#verify_signed').on('change', function () {
+        readFile(this);
+    });
+
+    var download = document.getElementById('download');
+    var result;
+    $("#crop").on("click", function () {
+        result = cropper["getCroppedCanvas"]();
+        if (result) {
+            $('#getCroppedCanvasModal').modal("show");
+            // Bootstrap's Modal
+            $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+            if (!download.disabled) {
+                download.download = uploadedImageName;
+                download.href = result.toDataURL(uploadedImageType);
+            }
+        }
+    });
+
+    $("#submit-to-server").on("click", function () {
+        var base64 = download.href;
+        var explode = base64.split(";base64,");
+        var ext = explode[0].split("/").pop();
+        ajaxPost('/profile-sign',{image: base64, ext:ext}, function (data) {
+            toastrForm(data);
+            location.href = '';
+        });
+    });
+</script>
+<script>
+    window.onload = function () {
+        'use strict';
+        var Cropper = window.Cropper;
+    };
+
+
+</script>
+<script>
+    $("#myphone").intlTelInput({
+        // options here
+        nationalMode: true,
+        separateDialCode: true,
+        formatOnDisplay: false,
+    });
+
+    $("#myphone").on("change", function () {
+        var text = $(".selected-dial-code").html() + this.value;
+        $("#phone").val(text);
+    });
+
+    $(".country-list").on("click", function () {
+        var text = $(".selected-dial-code").html() + $("#myphone").val();
+        $("#phone").val(text);
+    });
+</script>

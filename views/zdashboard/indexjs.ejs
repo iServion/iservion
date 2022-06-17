@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
+<script>
+    <% if(isSetup) { %>
+    window.setTimeout(function () {
+        location.href = "/zrole?id=<%- roleId%>"
+    },2500);
+    <%}%>
+
+    
+    $(function () {
+        $("body").on("click",".btn-exec", function () {
+            alert("ok");
+            ajaxPost("/zdashboard/exec", {id: $(this).data("id")}, function (data) {
+                $("#grid").modal("show");
+                $(".modal-body").html(data);
+            });
+        });
+
+        $("body").on("click",".btn-console", function () {
+            window.open(
+                    '/terminal',
+                    '_blank',
+                    'width=700,height=500'
+            );
+        });
+
+        $("body").on("click",".btn-sftp", function () {
+            var serverId = $(this).data("serverid");
+            ajaxPost("/zdashboard/sftp",{
+                id: serverId
+            }, function (data) {
+                $("#modalssh").modal("show");
+                /*var html = "";
+                console.log(typeof data);
+                data.forEach(function (dt) {
+                    html += `${dt.longname}<br>`
+                })*/
+                $(".contenssh").html(data);
+            });
+        });
+    });
+</script>

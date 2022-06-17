@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required head -->
+    <%- include("head.ejs") %>
+    <!-- Remove this using bootstrap3-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' href='/css/style.css'/>
+    <!-- End Remove this using bootstrap3-->
+
+    <!--
+
+    your css file
+
+    -->
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid menu-content">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="true" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/dashboard"><img src="/img/logo.png" alt="<%- titleApp %>"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true" style="">
+            <ul class="nav navbar-nav ">
+                <%- menuGenerator == "" ? include(menu.ejs) : menuGenerator %>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" ><i class="fa fa-building fa-fw"></i> Company<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <% companies.forEach(function (item) { %>
+                            <a <%- user.company.id == item.id ? " href='#' " : 'href="/session/' + item.id + '"' %> > <%- item.name %></a>
+                            <% })%>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><i class="fa fa-cogs"></i> Setting<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="menu_structure">Menu Structure<span class="caret"></span></a>
+
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="/zconfig">Application Config</a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="/menu-generator">Menu Generator</a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="/zreports_setting">Report Generator</a>
+                                </li>
+                                <% if(menuAccess('generator', cLevels)) { %>
+                                <li class="dropdown-submenu">
+                                    <a href="/generator">Generator</a>
+                                </li>
+                                <% } %>
+
+                                <% if(menuAccess('zvirtual', cLevels)) { %>
+                                <li class="dropdown-submenu">
+                                    <a href="/zvirtual">Zvirtual</a>
+                                </li>
+                                <% } %>
+
+                                <% if(menuAccess('language', cLevels)) { %>
+                                <li><a href="/language">Languages</a></li>
+                                <% } %>
+
+                                <% if(menuAccess('restart', cLevels)) { %>
+                                <li><a href="#" id="restart-server-cms">Restart Server</a></li>
+                                <% } %>
+
+                                <% if(menuAccess('zerror', cLevels)) { %>
+                                <li><a href="/zerror">Log Errors</a></li>
+                                <% } %>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="user_management">User Management<span
+                                        class="caret"></span></a>
+                            <ul class="dropdown-menu">
+
+                                <% if(menuAccess('role', cLevels)) { %>
+                                <li class="dropdown-submenu">
+                                    <a href="/zrole">User Role</a>
+                                </li>
+                                <% } %>
+
+                                <% if(menuAccess('user', cLevels)) { %>
+                                <li class="dropdown-submenu">
+                                    <a href="/user">User Account</a>
+                                </li>
+                                <% } %>
+
+                                <% if(menuAccess('user_company', cLevels)) { %>
+                                <li class="dropdown-submenu">
+                                    <a href="/user_company">User Company Access</a>
+                                </li>
+                                <% } %>
+
+                                <% if(menuAccess('invite', cLevels)) { %>
+                                <li class="dropdown-submenu">
+                                    <a href="/invite">Invite </a>
+                                </li>
+                                <% } %>
+
+                            </ul>
+                        </li>
+
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="maintenance">Widgets<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="/zwidgets">Market Place</a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="/your_widgets">Installed</a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="/zwidgets/dashboard">Your Widgets</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <strong>Profile</strong>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <img src="<%- user.image ? user.image.indexOf("http") > -1 ? user.image : "/uploads/user/" + user.image : "/img/user.png" %>"
+                                                 width="100px">
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong><%= user.fullname %></strong></p>
+                                        <small class="text text-success">As <%= user.roleName %></small>
+                                        <p class="text-left small"><%= user.username %></p>
+                                        <p class="text-left">
+                                            <a href="/profile" class="btn btn-primary btn-block btn-sm"><i
+                                                        class="glyphicon glyphicon-user"></i> Profile </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <a href="/logout" id="main-logout" class="btn btn-danger btn-block"><i
+                                                        class="fa fa-power-off"></i> Logout</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="">
+    <% if(renderBody != ""){ %>
+    <%- include("./../"+renderBody) %>
+    <% } %>
+</div>
+
+<!-- Remove this script -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('.dropdown-submenu a.test').on("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $(this).parent().siblings().removeClass('open');
+            $(this).parent().toggleClass('open');
+        });
+        $("#restart-server-cms").on("click", function () {
+            fetch("/restart");
+        })
+    });
+</script>
+<!-- End Remove this script -->
+
+<!-- Please add jquery -->
+<%- include("script.ejs") %>
+
+
+
+</body>
+</html>

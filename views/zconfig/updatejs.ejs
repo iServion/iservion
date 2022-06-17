@@ -1,0 +1,58 @@
+<script>
+    submitForm('form-group', '', '/<%- routeName %>');
+    $(function () {
+        $(".isfile").each(function (index, value) {
+            var filename = $(this).attr("data-filename") || "";
+            var id = $(this).attr("data-id");
+            if (filename.length > 3) {
+                var ext = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
+                if (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg" || ext == "bmp" || ext == "webp") {
+                    $("#file"+id).attr("src","/uploads/<%- routeName %>/"+filename).attr("height","100px");
+                } else {
+                    $("#file"+id).attr("src","/img/file.png").attr("height","100px");
+                }
+                $("#file"+id).on("click", function () {
+                    location.href = "/uploads/<%- routeName %>/"+filename;
+                })
+            }
+        });
+    });
+    <%
+    for(var keys in dropdowns) {
+    if(dropdowns[keys].name == 'table'){
+        var datas = '{';
+        for(var i =0;i<dropdowns[keys].relations.length;i++){
+            datas += dropdowns[keys].relations[i] + ' : $("#'+dropdowns[keys].relations[i]+'").val(),';
+        }
+        datas = datas.slice(0,-1);
+        datas += '}';
+    %>
+    $("#<%- keys%>").on("change", function () {
+        ajaxPost("/<%- routeName%>/chains",{id:$(this).val(),key:'<%- keys%>', relations: <%- datas %>}, function (data) {
+            for(var keys in data){
+                $("#"+keys).html(data[keys]);
+            }
+        });
+    });
+    <%} if(dropdowns[keys].name == 'add'  || dropdowns[keys].name == "multi"){ %>
+    $("#dropdownadd<%- keys%>").on("click", function () {
+        var val = $("#<%- keys%>").val();
+        if(val == ""){
+            alert("<%- LANGUAGE['form_add_data_select']%>");
+            return false;
+        }
+        var count = $(".span<%- keys%>").length;
+        var data = "<span class='span<%- keys%>' > "+(count+1)+". <input type='hidden' name='<%- keys%>[]' value='"+val+"' /> " + $("#<%- keys%> option:selected").text()+"   <i class='fa fa-trash pointer text-danger pull-right' onclick='$(this).closest(\"span\").remove();'  title='<%- LANGUAGE['delete']%>'></i><br></span>";
+        $("#dropdownbox<%- keys%>").append(data);
+        $("#<%- keys%>").val("");
+    });
+    <%}%>
+    <% if(dropdowns[keys].name == 'virtual'){ %>
+    $("#<%- keys%>").on("change", function () {
+        <% var virtual = dropdowns[keys].virtual; %>
+        <% for(var k in virtual) {%>
+        $("#<%- k%>").val($(this).find(':selected').attr("data-<%- k%>"));
+        <%}%>
+    });
+    <%}}%>
+</script>

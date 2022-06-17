@@ -1,0 +1,27 @@
+<script>
+    function checkthis(elm) {
+        var cElem = $("#all" + elm);
+        if (cElem.is(":checked")) {
+            $("input." + elm).prop("checked", true);
+        } else {
+            $("input." + elm).prop("checked", false);
+        }
+    }
+
+    $("#roleName").on('change', function () {
+        location.href = "/zrole?id=" + $(this).val();
+    });
+
+    var form = document.getElementById("role-form");
+    form.onsubmit = function (ev) {
+        ev.preventDefault();
+        var url = '/zrole/update/<%= id%>';
+        ajaxPost(url, $(this).serialize(), function (data) {
+            if (data.status == 1) {
+                toastr.success('Success', 'Updated Role');
+            } else {
+                toastr.error('Error!',data.data);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,115 @@
+.dashboard {
+    .server-list {
+
+        .table {
+            margin: 0;
+        }
+        
+        .list-set {
+
+            tbody {
+                border: 0;
+            }
+
+            @media (max-width: 991.98px) {
+                &.second-child {
+                    thead {
+                        display: none;
+                    }
+                }
+            }
+
+            th,
+            td {
+                padding: 15px 20px 15px 30px;
+                background-color: $bgOne;
+                font-weight: 600;
+                font-size: 14px;
+                color: rgba($color: $black, $alpha: 0.6);
+                border-bottom: 10px solid $white;
+
+                @media (max-width: 575px) {
+                    padding: 15px 10px;
+                }
+
+                .status {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90px;
+                    height: 28px;
+                    border-radius: 5px;
+                    background-color: #B3F4BD;
+                    color: $black;
+
+                    &.inactive {
+                        background-color: #FDA3A3;
+                    }
+                }
+            }
+
+            th {
+                color: $black;
+            }
+
+
+        }
+    }
+
+    .pagination-area {
+        padding-top: 15px;
+        display: flex;
+        justify-content: center;
+
+        ul {
+            display: flex;
+            align-items: center;
+
+            li {
+                margin: 0 10px;
+
+                @media (max-width: 575px) {
+                    margin: 0 5px;
+                }
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    font-size: 13px;
+                    color: rgba($color: $black, $alpha: 0.6);
+                    font-weight: 600;
+
+                    @media (max-width: 575px) {
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+
+                &.disabled,
+                &.arrow {
+                    a {
+                        background-color: rgba($color: $black, $alpha: 0.15);
+                    }
+                }
+
+                &.active,
+                &.disabled {
+                    a {
+                        pointer-events: none;
+                    }
+                }
+
+                &.active {
+                    a {
+                        background-color: #C5D2FF;
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
+}
