@@ -42,12 +42,11 @@ module.exports = {
         logo: `${url}/img/logo.png`
     },
     google: {
-        clientID: '403074392838-ud1g43prfr6nbc8nd0ntfri87ghtjac2.apps.googleusercontent.com',
-        clientSecret: 'pNT-bQDzgsL-ytxMX1XtXpnu',
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: `${url}/auth/google/callback`,
-        shortUrl: 'AIzaSyCVQ_yoI9k1VJ6AwHCoBwIIWCJNXslWru8',
-        //key: 'AIzaSyA9dkXEE33MaePNnTDxqOx3WYt9io8Wg0o'
-        key: 'AIzaSyAaO0jkdmCmoJ8aK5UKJf4D_u1eAauxqpc'
+        shortUrl: process.env.GOOGLE_SHORT_URL,
+        key: process.env.GOOGLE_KEY
     },
     recaptcha: {
         siteKey: '6LcmfuwUAAAAALn5f_CTrEKd7Bb4F5ijSjtGIdem',
