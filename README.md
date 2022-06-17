@@ -1,10 +1,10 @@
-[![GitHub stars](https://img.shields.io/github/stars/sintret/servion.svg)](https://github.com/digitalocean/nginxconfig.io/stargazers)
-[![MIT License](https://img.shields.io/github/license/sintret/servion.svg?color=blue)](https://github.com/digitalocean/nginxconfig.io/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/iServion/iservion.svg)](https://github.com/digitalocean/nginxconfig.io/stargazers)
+[![MIT License](https://img.shields.io/github/license/iServion/iservion.svg?color=blue)](https://github.com/iServion/iservion/blob/master/LICENSE)
 <br />
-[![Closed issues](https://img.shields.io/github/issues-closed-raw/sintret/servion.svg?color=brightgreen)](https://github.com/digitalocean/nginxconfig.io/issues?q=is%3Aissue+is%3Aclosed)
-[![Closed PR](https://img.shields.io/github/issues-pr-closed-raw/sintret/servion.svg?color=brightgreen)](https://github.com/digitalocean/nginxconfig.io/pulls?q=is%3Apr+is%3Aclosed)
-[![Open issues](https://img.shields.io/github/issues-raw/sintret/servion.svg)](https://github.com/digitalocean/nginxconfig.io/issues)
-[![Open PR](https://img.shields.io/github/issues-pr-raw/sintret/servion.svg)](https://github.com/digitalocean/nginxconfig.io/pulls)
+[![Closed issues](https://img.shields.io/github/issues-closed-raw/iServion/iservion.svg?color=brightgreen)](https://github.com/iServion/iservion/issues?q=is%3Aissue+is%3Aclosed)
+[![Closed PR](https://img.shields.io/github/issues-pr-closed-raw/iServion/iservion.svg?color=brightgreen)](https://github.com/iServion/iservion/pulls?q=is%3Apr+is%3Aclosed)
+[![Open issues](https://img.shields.io/github/issues-raw/iServion/iservion.svg)](https://github.com/iServion/iservion/issues)
+[![Open PR](https://img.shields.io/github/issues-pr-raw/iServion/iservion.svg)](https://github.com/iServion/iservion/pulls)
 
 [![nginxconfig](public/img/servion.png)](http//monitoring.injani.com)
 
@@ -15,9 +15,9 @@
     <a href="http//monitoring.injani.com"><strong>http//monitoring.injani.com »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/sintret/servion/issues/new?template=report-a-bug.md">Report a bug</a>
+    <a href="https://github.com/iServion/iservion/issues/new?template=report-a-bug.md">Report a bug</a>
     ·
-    <a href="https://github.com/sintret/servion/issues/new?template=request-a-feature.md">Request a feature</a>
+    <a href="https://github.com/iServion/iservion/issues/new?template=request-a-feature.md">Request a feature</a>
 </p>
 
 <br />
@@ -89,8 +89,7 @@ Any contributions you make are **greatly appreciated**.
 
 ## ⚒️ Built With
 
-* [Vue.js](https://vuejs.org/) - Template handling & app generation
-* [Bulma](https://bulma.io/) - Base styling, customised by [do-bulma](https://github.com/do-community/do-bulma)
+* [EJS.js](https://ejs.org/) - Template handling & app generation
 * [Prism](https://prismjs.com/) - Bash & NGINX syntax highlighting
 
 ## 📚 Resources
@@ -106,4 +105,4 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-This project is licensed under the [MIT](https://github.com/digitalocean/nginxconfig.io/blob/master/LICENSE) license.
+This project is licensed under the [MIT](https://github.com/iServion/iservion/blob/master/LICENSE) license.
