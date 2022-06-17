@@ -12,15 +12,15 @@ module.exports = {
     ignore_watch : ["node_modules","public"],
     max_memory_restart: '1G',
     env: {
-      "PORT": 3013,
+      "PORT": 3000,
       "NODE_ENV": 'development'
     },
     env_production: {
-      "PORT": 3013,
+      "PORT": 3000,
       "NODE_ENV": 'production'
     },
     env_testing: {
-      "PORT": 3013,
+      "PORT": 3000,
       "NODE_ENV": 'testing'
     }
   }]

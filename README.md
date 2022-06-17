@@ -27,7 +27,7 @@
 
 1. Clone the repository
     ```sh
-    git clone https://github.com/sintret/servion.git
+    git clone https://github.com/iServion/iservion.git
     ```
 
 2. Install NPM packages
@@ -50,7 +50,7 @@
     npm run dev
     ```
 
-4. Open the development site **[localhost:3013](http://localhost:3013)**
+4. Open the development site **[localhost:3000](http://localhost:3000)**
 * Username: admin@admin.com
 * Password: 123456
 
