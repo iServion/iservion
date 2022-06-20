@@ -230,17 +230,12 @@ zCache.get("ROUTES").forEach(file => {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : err;
-    // render the error page
-    res.status(err.status || 500);
-    ////res.render('error');
+app.get('*', function(req, res){
     res.render("layouts/error", {
-        menu: "failed",
-        renderBody: "index/failed.ejs"
+        error:"Page Not Found!!",
+        renderBody: 'index/error.ejs'
     });
 });
+
 
 module.exports = app;
