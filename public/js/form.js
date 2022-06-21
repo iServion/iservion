@@ -481,6 +481,22 @@ function ajaxCall(method,url,data,callback) {
     }
     config.success = function (data) {
         $("#modalpopup").hide();
+        $(".invalid-feedback").each(function () {
+            $(this).remove();
+        });
+        $(".is-invalid").each(function () {
+            $(this).removeClass("is-invalid");
+        });
+        $(elementId).closest("form").addClass("was-validated ");
+        if(data.hasOwnProperty("elementId")){
+            var elementId = data.elementId;
+            $(elementId).addClass("is-invalid");
+            $(elementId).closest("form").addClass("was-validated ");
+            $(elementId).closest("div").append(`<div class="invalid-feedback">${data.message}</div>`);
+            setTimeout(function () {
+                $(elementId).closest("form").removeClass("was-validated ");
+            },3000)
+        }
         callback(data);
     }
 
