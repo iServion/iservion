@@ -134,6 +134,233 @@ api.compare = async(results,code, zapi) => {
     return obj;
 }
 
+var putApps = async(req,res, code,companyId,zapi) => {
+    var json = Util.jsonSuccess("Success");
+    let DIR_VIEW = dirRoot + "/public/uploads/zapi";
+    if (!fs.existsSync(DIR_VIEW)){
+        fs.mkdirSync(DIR_VIEW);
+    }
+    let files = qs.parse(req.files);
+    let filename = `${code}.csv`;
+    var results = await connection.results({
+        table : "client_pc",
+        where : {
+            company_id : companyId,
+            code : code
+        }
+    });
+
+    if(!results.length) {
+        return res.json(Util.flashError("Sorry code not found"))
+    }
+    var clientId = results[0].id;
+    //save this for compare
+    var previousResults = await connection.results({
+        table : "application_list",
+        where : {
+            client_pc_id : clientId
+        }
+    });
+
+    await connection.delete({
+        table : "application_list",
+        where : {
+            client_pc_id : clientId
+        }
+    });
+
+    for (var key in files) {
+        files[key].mv(DIR_VIEW + "/" + filename, function (err) {
+            if (err) {
+                json = Util.flashError(err);
+                return res.status(500).send(err);
+            }
+            var buffer  = fs.readFileSync(DIR_VIEW + "/" + filename, { encoding: "utf-16le" })
+            var content = buffer.toString('utf-8');
+            if (content) {
+                var lines = content.split("\r");
+                var num = 1;
+                lines.forEach(async function (line) {
+                    if(line) {
+                        var split = line.split(",");
+                        var name = split[1];
+                        var version = split[2];
+                        //console.log(`Name : ${name}  Version : ${version}`);
+                        var data = {
+                            name : name,
+                            version : version,
+                            client_pc_id : clientId,
+                            updated_at : Util.now(),
+                            created_at : Util.now(),
+                            updated_by : zapi.updated_by,
+                            created_by:zapi.created_by,
+                            company_id : zapi.company_id
+                        }
+                        if(num < 10) {
+                            /*  console.log(data)
+                             console.log(num);*/
+                        }
+                        if(name && name != "Name") {
+                            await connection.insert({
+                                table : "application_list",
+                                data : data
+                            });
+                        }
+                    }
+
+                    num++;
+                });
+                setTimeout(function () {
+                    api.compare(previousResults, code, zapi).then(function (obj) {
+                        //console.log(obj)
+                    });
+                },3000);
+
+                res.json(json);
+
+            } else {
+                res.json(Util.flashError("eror no file"));
+            }
+        });
+    }
+}
+
+var putInfo = async(req,res, code,companyId,zapi) => {
+    var json = Util.jsonSuccess("Success");
+    let DIR_VIEW = dirRoot + "/public/uploads/zapi";
+    if (!fs.existsSync(DIR_VIEW)){
+        fs.mkdirSync(DIR_VIEW);
+    }
+    let files = qs.parse(req.files);
+    let filename = `${code}.list`;
+    var results = await connection.results({
+        table : "client_pc",
+        where : {
+            company_id : companyId,
+            code : code
+        }
+    });
+
+    if(!results.length) {
+        return res.json(Util.flashError("Sorry code not found"))
+    }
+    for (var key in files) {
+        files[key].mv(DIR_VIEW + "/" + filename, async function (err) {
+            if (err) {
+                json = Util.flashError(err);
+                return res.status(500).send(err);
+            }
+            var buffer  = fs.readFileSync(DIR_VIEW + "/" + filename, { encoding: "utf-16le" })
+            var content = buffer.toString('utf-8');
+            if (content) {
+                await connection.update({
+                    table : "client_pc",
+                    data :{info:Util.replaceAll(content,"\r","<br>")},
+                    where : {
+                        id : results[0].id,
+                    }
+                });
+                res.json(json);
+
+            } else {
+                res.json(Util.flashError("eror no file"));
+            }
+        });
+    }
+}
+
+var putInfoWIndowsUpdate = async(req,res, code,companyId,zapi) => {
+    var json = Util.jsonSuccess("Success");
+    let DIR_VIEW = dirRoot + "/public/uploads/zapi";
+    if (!fs.existsSync(DIR_VIEW)){
+        fs.mkdirSync(DIR_VIEW);
+    }
+    let files = qs.parse(req.files);
+    let filename = `${code}.html`;
+    var results = await connection.results({
+        table : "client_pc",
+        where : {
+            company_id : companyId,
+            code : code
+        }
+    });
+
+    if(!results.length) {
+        return res.json(Util.flashError("Sorry code not found"))
+    }
+    for (var key in files) {
+        files[key].mv(DIR_VIEW + "/" + filename, async function (err) {
+            if (err) {
+                json = Util.flashError(err);
+                return res.status(500).send(err);
+            }
+            var buffer  = fs.readFileSync(DIR_VIEW + "/" + filename, { encoding: "utf-16le" })
+            var content = buffer.toString('utf-8');
+            if (content) {
+                //console.log(content)
+                console.log(`${CONFIG.app.url}/uploads/zapi/${filename}`);
+
+                await connection.update({
+                    table : "client_pc",
+                    data :{windows_update:content},
+                    where : {
+                        id : results[0].id,
+                    }
+                });
+                res.json(json);
+
+            } else {
+                res.json(Util.flashError("eror no file"));
+            }
+        });
+    }
+}
+
+
+var put = async(req,res, code,companyId,zapi) => {
+    var json = Util.jsonSuccess("Success");
+    let DIR_VIEW = dirRoot + "/public/uploads/zapi";
+    if (!fs.existsSync(DIR_VIEW)){
+        fs.mkdirSync(DIR_VIEW);
+    }
+    let files = qs.parse(req.files);
+    let filename = `${code}.list`;
+    var results = await connection.results({
+        table : "client_pc",
+        where : {
+            company_id : companyId,
+            code : code
+        }
+    });
+
+    if(!results.length) {
+        return res.json(Util.flashError("Sorry code not found"))
+    }
+    for (var key in files) {
+        files[key].mv(DIR_VIEW + "/" + filename, async function (err) {
+            if (err) {
+                json = Util.flashError(err);
+                return res.status(500).send(err);
+            }
+            var buffer  = fs.readFileSync(DIR_VIEW + "/" + filename, { encoding: "utf-16le" })
+            var content = buffer.toString('utf-8');
+            if (content) {
+                await connection.update({
+                    table : "client_pc",
+                    data :{info:Util.replaceAll(content,"\r","<br>")},
+                    where : {
+                        id : results[0].id,
+                    }
+                });
+                res.json(json);
+
+            } else {
+                res.json(Util.flashError("eror no file"));
+            }
+        });
+    }
+}
+
 api.put=async(req,res)=>{
     var json = Util.flashError("API Error");
     var title = req.params.title;
@@ -153,97 +380,12 @@ api.put=async(req,res)=>{
     }
     var companyId = zapi.company_id;
     if(title == "client") {
-        json = Util.jsonSuccess("Success");
-        let DIR_VIEW = dirRoot + "/public/uploads/zapi";
-        if (!fs.existsSync(DIR_VIEW)){
-            fs.mkdirSync(DIR_VIEW);
-        }
-        let files = qs.parse(req.files);
-        let filename = `${code}.csv`;
-        var results = await connection.results({
-            table : "client_pc",
-            where : {
-                company_id : companyId,
-                code : code
-            }
-        });
-
-        if(!results.length) {
-            return res.json(Util.flashError("Sorry code not found"))
-        }
-        var clientId = results[0].id;
-        //save this for compare
-        var previousResults = await connection.results({
-            table : "application_list",
-            where : {
-                client_pc_id : clientId
-            }
-        });
-
-        await connection.delete({
-            table : "application_list",
-            where : {
-                client_pc_id : clientId
-            }
-        });
-
-        for (var key in files) {
-            files[key].mv(DIR_VIEW + "/" + filename, function (err) {
-                if (err) {
-                    json = Util.flashError(err);
-                    return res.status(500).send(err);
-                }
-                var buffer  = fs.readFileSync(DIR_VIEW + "/" + filename, { encoding: "utf-16le" })
-                var content = buffer.toString('utf-8');
-                if (content) {
-                    var lines = content.split("\r");
-                    var num = 1;
-                    lines.forEach(async function (line) {
-                        if(line) {
-                            var split = line.split(",");
-                            var name = split[1];
-                            var version = split[2];
-                            //console.log(`Name : ${name}  Version : ${version}`);
-                            var data = {
-                                name : name,
-                                version : version,
-                                client_pc_id : clientId,
-                                updated_at : Util.now(),
-                                created_at : Util.now(),
-                                updated_by : zapi.updated_by,
-                                created_by:zapi.created_by,
-                                company_id : zapi.company_id
-                            }
-                            if(num < 10) {
-                               /* console.log(data)
-                                console.log(num)*/
-                            }
-                            if(name && name != "Name") {
-                                await connection.insert({
-                                    table : "application_list",
-                                    data : data
-                                });
-                            }
-                        }
-
-                        num++;
-                    });
-
-
-                    setTimeout(function () {
-                        api.compare(previousResults, code, zapi).then(function (obj) {
-                            //console.log(obj)
-                        });
-                    },3000);
-
-                    res.json(json);
-
-                } else {
-                    res.json(Util.flashError("eror no file"));
-                }
-            });
-        }
-    } else {
+        await putApps(req,res, code,companyId,zapi);
+    } else if(title == "client-info"){
+        await putInfo(req,res, code,companyId,zapi);
+    } else if(title == "client-info-windows-update"){
+        await putInfoWIndowsUpdate(req,res, code,companyId,zapi);
+    }else {
         res.json(json);
 
     }

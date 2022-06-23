@@ -9,49 +9,92 @@
         <span class="input-group-text" onclick="copyToClipboard('<%- api.token%>')" style="cursor: pointer">Copy</span>
     </div>
     <%}%>
-<hr>
+    <hr>
 
-<% if(!hasApi) {%>
-<button class="btn btn-success btn-create">Create</button><br>
-<span class="badge bg-danger" >You have not create API yet</span><br>
-<%} else { %>
+    <% if(!hasApi) {%>
+    <button class="btn btn-success btn-create">Create</button><br>
+    <span class="badge bg-danger" >You have not create API yet</span><br>
+    <%} else { %>
 
-<h3>Health Tools</h3>
-<code>
-    curl "<%- url%>/api/health"
-    -X POST
-    -H "Accept: application/json"
-    -H "Content-Type: application/json"
-    -H "X-Token: <%- api.token%>"
+    <h3>Health Tools</h3>
+    <div class="card">
+        <code>
+            curl "<%- url%>/api/health"
+            -X POST
+            -H "Accept: application/json"
+            -H "Content-Type: application/json"
+            -H "X-Token: <%- api.token%>"
 
-</code>
-<p>&nbsp;</p>
+        </code>
+    </div>
+
+    <hr>
+
+    <h3>Service</h3>
+    <div class="card">
+        <code>
+            curl "<%- url%>/api/service"
+            -X POST
+            -H "Accept: application/json"
+            -H "Content-Type: application/json"
+            -H "X-Token: <%- api.token%>"
+            -d  "{\"server_id\":1,\"service\":\"ufw.service\"}"
+
+        </code>
+    </div>
+
+    <hr>
 
 
-<h3>Service</h3>
-<code>
-    curl "<%- url%>/api/service"
-    -X POST
-    -H "Accept: application/json"
-    -H "Content-Type: application/json"
-    -H "X-Token: <%- api.token%>"
-    -d  "{\"server_id\":1,\"service\":\"ufw.service\"}"
+    <h3>Client PC</h3><h5>- Set Application </h5>
+    <p>Example set CSV file on windows :<br>
+    <div class="card">
+        <code>wmic /output:C:\temp\csv.csv product get name,version /format:csv</code>
+    </div>
+    <div class="card" >
+        <code >
+            curl "<%- url%>/api/client"
+            -X PUT
+            -H "X-Token: <%- api.token%>"
+            -F "code=YOUR_CODE"
+            -F "file=@C:\temp\csv.csv"
+        </code>
+    </div>
+    <br>
 
-</code>
+    <p><h5>- Set Information </h5>
+    Example set CSV file on windows :</p>
+    <div class="card">
+        <code> wmic  /output:C:\temp\list.txt computersystem list full /format:list</code>
 
-<p>&nbsp;</p>
+    </div>
+    <div class="card">
+        <code>
+            curl "<%- url%>/api/client-info"
+            -X PUT
+            -H "X-Token: <%- api.token%>"
+            -F "code=YOUR_CODE"
+            -F "file=@C:\temp\list.txt"
+        </code>
+    </div>
+    <br>
 
-<h3>Client PC</h3>
-<p>Example set CSV file on windows : <code>wmic /output:C:\json\csv.csv product get name,version /format:csv</code>
-</p>
-<p>Parameter <b>code</b> can be fit with your client pc</p>
-<code>
-    curl "<%- url%>/api/client"
-    -X PUT
-    -H "X-Token: <%- api.token%>"
-    -F "code=YOUR_CODE"
-    -F "file=@C:\json\csv.csv"
-</code>
-<br>
+    <p><h5>- Get Windows Update </h5>
+    Example set CSV file on windows :</p>
+    <div class="card">
+        <code> wmic  /output:C:\temp\table.html qfe list /format:htable</code>
+
+    </div>
+    <div class="card">
+        <code>
+            curl "<%- url%>/api/client-info-windows-update"
+            -X PUT
+            -H "X-Token: <%- api.token%>"
+            -F "code=YOUR_CODE"
+            -F "file=@C:\temp\table.html"
+        </code>
+    </div>
+
+    <br>
 
 <%} %>

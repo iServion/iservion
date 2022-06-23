@@ -34,7 +34,9 @@ CREATE TABLE public.client_pc (
     updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
     name character varying(255) DEFAULT NULL::character varying,
     address character varying(255) DEFAULT NULL::character varying,
-    code character varying(255) DEFAULT NULL::character varying
+    code character varying(255) DEFAULT NULL::character varying,
+    info TEXT,
+    windows_update TEXT
 );
 
 CREATE TABLE public.commands (
